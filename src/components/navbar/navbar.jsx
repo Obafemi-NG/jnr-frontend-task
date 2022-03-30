@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as Cart } from "../../assets/cart.svg";
 import { ReactComponent as Currency } from "../../assets/dollar-sign.svg";
 import { ReactComponent as Angledown } from "../../assets/angle-down.svg";
-import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
+// import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
 
 export const Navbar = () => {
   return (
@@ -19,8 +19,8 @@ export const Navbar = () => {
       </div>
       <div className={styles["navbar-left"]}>
         <div className={styles.icon}>
-          <Currency />{" "}
-          <span>
+          {/* <Currency />{" "} */}$
+          <span className={styles["angle-icon"]}>
             {" "}
             <Angledown />{" "}
           </span>

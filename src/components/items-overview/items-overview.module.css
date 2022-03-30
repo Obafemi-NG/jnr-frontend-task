@@ -1,0 +1,9 @@
+.overview {
+  padding: 20px 8px;
+  margin: 0px 30px;
+  /* background-color: red; */
+}
+.title {
+  font-size: 36px;
+  font-weight: 400;
+}
