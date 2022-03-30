@@ -19,8 +19,11 @@
   font-weight: 300;
   padding-bottom: 18px;
 }
+.icon-container:hover {
+  cursor: pointer;
+}
 .category-link:hover {
-  border-bottom: 2px solid #5ece7b;
+  border-bottom: 1px solid #5ece7b;
   cursor: pointer;
   color: #5ece7b;
 }
@@ -35,6 +38,26 @@
   background-color: white;
 }
 .icon {
-  padding: 5px;
+  padding: 4px;
   margin-left: 10px;
+  position: relative;
+  display: flex;
+}
+.icon:hover {
+  cursor: pointer;
+}
+.badge {
+  font-size: 10px;
+  height: 12px;
+  width: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  position: absolute;
+  padding: 2px;
+  border-radius: 50%;
+  color: white;
+  right: 0;
+  top: 0;
 }
