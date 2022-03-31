@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./navbar.module.css";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as Cart } from "../../assets/cart.svg";
-import { ReactComponent as Currency } from "../../assets/dollar-sign.svg";
 import { ReactComponent as Angledown } from "../../assets/angle-down.svg";
 // import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
 
