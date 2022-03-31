@@ -1,0 +1,11 @@
+.overview {
+  padding: 50px 8px;
+  margin: 0px 30px;
+  height: 100vh;
+  /* background-color: rgba(0, 0, 0, 0.11); */
+  /* background-color: red; */
+}
+.title {
+  font-size: 36px;
+  font-weight: 400;
+}

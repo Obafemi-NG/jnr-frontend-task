@@ -1,5 +1,7 @@
 .navbar {
   /* background-color: red; */
+  width: 100%;
+  position: fixed;
   height: 60px;
   display: flex;
   align-items: center;
