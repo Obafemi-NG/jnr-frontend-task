@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { ItemsOverview } from "./components/items-overview/items-overview";
-import { Navbar } from "./components/navbar/navbar";
+import { Header } from "./components/header/header";
 class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Header />
         <ItemsOverview />
       </div>
     );
