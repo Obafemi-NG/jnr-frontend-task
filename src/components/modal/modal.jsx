@@ -1,10 +1,14 @@
 import { Fragment } from "react";
 import ReactDOM from "react-dom";
 
+import { connect } from "react-redux";
+
+import { toggleCart } from "../../redux/cart/cart.action";
+
 import styles from "./modal.module.css";
 
-const Backdrop = () => {
-  return <div className={styles.backdrop} />;
+const Backdrop = ({ onclick }) => {
+  return <div className={styles.backdrop} onClick={onclick} />;
 };
 
 const ModalOverlay = (props) => {
@@ -17,17 +21,20 @@ const ModalOverlay = (props) => {
 
 const overlayElement = document.getElementById("overlay");
 
-const Modal = (props) => {
+const Modal = ({ toggleCart, children }) => {
   return (
     <Fragment>
-      {ReactDOM.createPortal(<Backdrop />, overlayElement)};
+      {ReactDOM.createPortal(<Backdrop onclick={toggleCart} />, overlayElement)}
       {ReactDOM.createPortal(
-        <ModalOverlay> {props.children} </ModalOverlay>,
+        <ModalOverlay> {children} </ModalOverlay>,
         overlayElement
       )}
-      ;
     </Fragment>
   );
 };
 
-export default Modal;
+const mapDispatchToProps = (dispatch) => ({
+  toggleCart: () => dispatch(toggleCart()),
+});
+
+export default connect(null, mapDispatchToProps)(Modal);

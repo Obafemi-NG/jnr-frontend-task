@@ -3,11 +3,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background-color: black; */
 }
 .btn {
   padding: 5px;
-  width: 105px;
+  width: 130px;
+  height: 40px;
   font-size: 14px;
 }
 .view-bag {

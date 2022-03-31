@@ -1,13 +1,22 @@
 import CartOverlay from "../../components/cart-overlay/cart-overlay";
+
+import { connect } from "react-redux";
+
+// import { toggleCart } from "../../redux/cart/cart.action";
+
 import styles from "./listing-page.module.css";
 
-const ListingPage = () => {
+const ListingPage = ({ hidden }) => {
   return (
     <div className={styles.overview}>
-      <CartOverlay />
+      {hidden ? null : <CartOverlay />}
       <div className={styles.title}> Category Name</div>
     </div>
   );
 };
 
-export default ListingPage;
+const mapStateToProps = (state) => ({
+  hidden: state.cart.hidden,
+});
+
+export default connect(mapStateToProps)(ListingPage);

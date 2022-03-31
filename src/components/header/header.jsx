@@ -7,7 +7,7 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as Angledown } from "../../assets/angle-down.svg";
 // import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
 
-export const Header = () => {
+const Header = () => {
   return (
     <div className={styles["navbar"]}>
       <div className={styles["link-container"]}>
@@ -20,7 +20,7 @@ export const Header = () => {
       </div>
       <div className={styles["navbar-left"]}>
         <div className={styles.icon}>
-          {/* <Currency />{" "} */}$
+          $
           <span className={styles["angle-icon"]}>
             {" "}
             <Angledown />{" "}
@@ -33,3 +33,5 @@ export const Header = () => {
     </div>
   );
 };
+
+export default Header;
