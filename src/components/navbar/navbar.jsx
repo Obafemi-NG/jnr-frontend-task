@@ -3,6 +3,7 @@ import styles from "./navbar.module.css";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as Cart } from "../../assets/cart.svg";
 import { ReactComponent as Angledown } from "../../assets/angle-down.svg";
+import CartIcon from "../cart-icon/cart-icon";
 // import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
 
 export const Navbar = () => {
@@ -25,8 +26,7 @@ export const Navbar = () => {
           </span>
         </div>
         <div className={styles.icon}>
-          <Cart />
-          <div className={styles.badge}>2</div>
+          <CartIcon />
         </div>
       </div>
     </div>
