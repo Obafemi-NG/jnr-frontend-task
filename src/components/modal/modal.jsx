@@ -1,3 +1,4 @@
+import React from "react";
 import { Fragment } from "react";
 import ReactDOM from "react-dom";
 
@@ -21,17 +22,23 @@ const ModalOverlay = (props) => {
 
 const overlayElement = document.getElementById("overlay");
 
-const Modal = ({ toggleCart, children }) => {
-  return (
-    <Fragment>
-      {ReactDOM.createPortal(<Backdrop onclick={toggleCart} />, overlayElement)}
-      {ReactDOM.createPortal(
-        <ModalOverlay> {children} </ModalOverlay>,
-        overlayElement
-      )}
-    </Fragment>
-  );
-};
+class Modal extends React.Component {
+  render() {
+    const { toggleCart, children } = this.props;
+    return (
+      <Fragment>
+        {ReactDOM.createPortal(
+          <Backdrop onclick={toggleCart} />,
+          overlayElement
+        )}
+        {ReactDOM.createPortal(
+          <ModalOverlay> {children} </ModalOverlay>,
+          overlayElement
+        )}
+      </Fragment>
+    );
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCart: () => dispatch(toggleCart()),
