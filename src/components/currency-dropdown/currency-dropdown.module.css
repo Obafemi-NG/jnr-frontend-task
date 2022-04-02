@@ -10,3 +10,12 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.currency {
+  /* padding: 2px 1px 2px 1px; */
+  padding: 5px;
+  height: 80%;
+}
+.currency:hover {
+  cursor: pointer;
+  background-color: rgba(211, 211, 211, 0.205);
+}

@@ -7,9 +7,9 @@ class CurrencyDropdown extends React.Component {
     return (
       <CurrencyModal>
         <div className={styles.currencies}>
-          <span>$ USD</span>
-          <span>£ PND</span>
-          <span>€ EUR</span>
+          <div className={styles.currency}>$ USD</div>
+          <div className={styles.currency}>£ PND</div>
+          <div className={styles.currency}>€ EUR</div>
         </div>
       </CurrencyModal>
     );

@@ -1,19 +1,13 @@
 .currency-modal-overlay {
-  /* width: 30px;
-  height: 60px;
-  border: 0.3px solid gray;
-  margin-left: auto;
-  z-index: 30; */
   position: fixed;
   top: 50px;
   right: 30px;
   width: 85px;
-  height: 120px;
+  height: 140px;
   background-color: white;
   box-shadow: 3px 3px 10px -4px rgba(202, 202, 202, 0.75);
   -webkit-box-shadow: 3px 3px 10px -4px rgba(202, 202, 202, 0.75);
   -moz-box-shadow: 3px 3px 10px -4px rgba(202, 202, 202, 0.75);
-  /* border: 0.3px solid gray; */
   z-index: 20;
   padding: 10px;
 }
