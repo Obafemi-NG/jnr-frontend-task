@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "../modal/modal";
+import Modal from "../cart-modal/cart-modal";
 import styles from "./cart-overlay.module.css";
 
 class CartOverlay extends React.Component {

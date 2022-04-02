@@ -5,14 +5,28 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  useQuery,
+  gql,
+} from "@apollo/client";
 
 const container = document.getElementById("root");
 
+const client = new ApolloClient({
+  uri: "https://localhost:4000",
+  cache: new InMemoryCache(),
+});
+
 const root = ReactDOMClient.createRoot(container);
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ApolloProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

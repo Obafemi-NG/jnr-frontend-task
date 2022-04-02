@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import { toggleCart } from "../../redux/cart/cart.action";
 
-import styles from "./modal.module.css";
+import styles from "./cart-modal.module.css";
 
 const Backdrop = ({ onclick }) => {
   return <div className={styles.backdrop} onClick={onclick} />;

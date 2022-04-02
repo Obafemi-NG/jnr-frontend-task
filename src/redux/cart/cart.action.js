@@ -5,6 +5,16 @@ export const addItem = (item) => ({
   payload: item,
 });
 
+export const removeItem = (item) => ({
+  type: cartActionTypes.REMOVE_CART_ITEM,
+  payload: item,
+});
+
+export const clearItem = (item) => ({
+  type: cartActionTypes.REMOVE_CART_ITEM,
+  payload: item,
+});
+
 export const toggleCart = () => ({
   type: cartActionTypes.TOGGLE_CART,
 });

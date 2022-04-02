@@ -1,14 +1,19 @@
 import React from "react";
 import styles from "./header.module.css";
 
+import { connect } from "react-redux";
+
+import { toggleCurrencyDropdown } from "../../redux/currency/currency.action";
+
 import CartIcon from "../cart-icon/cart-icon";
 
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as Angledown } from "../../assets/angle-down.svg";
-// import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
+import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
 
 class Header extends React.Component {
   render() {
+    const { toggleCurrencyDropdown, hidden } = this.props;
     return (
       <div className={styles["navbar"]}>
         <div className={styles["link-container"]}>
@@ -22,9 +27,11 @@ class Header extends React.Component {
         <div className={styles["navbar-left"]}>
           <div className={styles.icon}>
             $
-            <span className={styles["angle-icon"]}>
-              {" "}
-              <Angledown />{" "}
+            <span
+              onClick={toggleCurrencyDropdown}
+              className={styles["angle-icon"]}
+            >
+              {hidden ? <Angledown /> : <Angleup />}
             </span>
           </div>
           <div className={styles.icon}>
@@ -36,4 +43,12 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  hidden: state.currency.hidden,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleCurrencyDropdown: () => dispatch(toggleCurrencyDropdown()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
