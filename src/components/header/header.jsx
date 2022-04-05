@@ -20,6 +20,7 @@ class Header extends React.Component {
           <div className={styles["category-link"]}>WOMEN</div>
           <div className={styles["category-link"]}>MEN</div>
           <div className={styles["category-link"]}>KIDS</div>
+          <div className={styles["category-link"]}></div>
         </div>
         <div className={styles["icon-container"]}>
           <Logo />

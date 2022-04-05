@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import styles from "./listing-page.module.css";
 import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdown";
 
+import Card from "../../components/card/card";
+
 class ListingPage extends React.Component {
   render() {
     const { hidden, currencyHidden } = this.props;
@@ -14,6 +16,7 @@ class ListingPage extends React.Component {
         {hidden ? null : <CartOverlay />}
         {currencyHidden ? null : <CurrencyDropdown />}
         <div className={styles.title}> Category Name</div>
+        <Card />
       </div>
     );
   }
