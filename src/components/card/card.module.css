@@ -1,6 +1,14 @@
 .card {
-  width: 340px;
-  height: 400px;
+  width: 330px;
+  height: 380px;
   padding: 10px;
-  background-color: red;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  box-shadow: 3px 3px 22px -2px rgba(194, 194, 194, 0.75);
+  -webkit-box-shadow: 3px 3px 22px -2px rgba(194, 194, 194, 0.75);
+  -moz-box-shadow: 3px 3px 22px -2px rgba(194, 194, 194, 0.75);
 }

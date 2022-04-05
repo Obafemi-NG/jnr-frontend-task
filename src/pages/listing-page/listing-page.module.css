@@ -7,3 +7,11 @@
   font-size: 36px;
   font-weight: 400;
 }
+.product-lists {
+  margin-top: 15px;
+}
+
+.product-img {
+  width: 100px;
+  height: 100px;
+}
