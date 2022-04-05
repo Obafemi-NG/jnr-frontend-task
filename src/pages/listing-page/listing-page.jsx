@@ -50,20 +50,35 @@ class ListingPage extends React.Component {
                 const { products } = categories.find(
                   (category) => category.name === this.props.category
                 );
-                return products.map((product) => (
-                  <Card>
-                    <div className={styles["img-container"]}>
-                      <img
-                        className={styles["product-img"]}
-                        src={product.gallery[0]}
-                        alt={product.id}
-                      />
-                    </div>
-                    <div className={styles["card-footer"]}>
-                      <p> {product.id} </p>
-                    </div>
-                  </Card>
-                ));
+                products.map((product) => console.log(product.prices));
+                return products.map((product) => {
+                  const productPrice = product.prices.find(
+                    (currency) =>
+                      currency.currency.label === this.props.preferredCurrency
+                  );
+                  return (
+                    <Card key={product.id}>
+                      <div className={styles["img-container"]}>
+                        <img
+                          className={styles["product-img"]}
+                          src={product.gallery[0]}
+                          alt={product.name}
+                        />
+                      </div>
+                      <div className={styles["card-footer"]}>
+                        <p className={styles["product-name"]}>
+                          {" "}
+                          {product.name}{" "}
+                        </p>
+                        <p className={styles["product-price"]}>
+                          {" "}
+                          {productPrice.currency.symbol}
+                          {productPrice.amount}{" "}
+                        </p>
+                      </div>
+                    </Card>
+                  );
+                });
               }
             }}
           </Query>
@@ -77,6 +92,7 @@ const mapStateToProps = (state) => ({
   hidden: state.cart.hidden,
   currencyHidden: state.currency.hidden,
   category: state.product.category,
+  preferredCurrency: state.product.preferredCurrency,
 });
 
 export default connect(mapStateToProps)(ListingPage);
