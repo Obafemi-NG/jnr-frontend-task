@@ -34,25 +34,36 @@ class ListingPage extends React.Component {
         }
       }
     `;
-    const { hidden, currencyHidden } = this.props;
+    const { hidden, currencyHidden, category } = this.props;
     return (
       <div className={styles.overview}>
         {hidden ? null : <CartOverlay />}
         {currencyHidden ? null : <CurrencyDropdown />}
-        <div className={styles.title}> Category Name</div>
+        <div className={styles.title}> {category.toUpperCase()} </div>
         <div className={styles["product-lists"]}>
-          {/* <Card /> */}
           <Query query={PRODUCT_LISTS}>
             {({ loading, error, data }) => {
               if (loading) return <div>Loading...</div>;
               if (error) return <div> Error! {error.message} </div>;
               else {
-                const products = data.categories.map(
-                  (product) => product.products
+                const categories = data.categories.map((category) => category);
+                const { products } = categories.find(
+                  (category) => category.name === this.props.category
                 );
-                // const product = products.map((product) => product.id);
-                // console.log(product);
-                console.log(products);
+                return products.map((product) => (
+                  <Card>
+                    <div className={styles["img-container"]}>
+                      <img
+                        className={styles["product-img"]}
+                        src={product.gallery[0]}
+                        alt={product.id}
+                      />
+                    </div>
+                    <div className={styles["card-footer"]}>
+                      <p> {product.id} </p>
+                    </div>
+                  </Card>
+                ));
               }
             }}
           </Query>
@@ -65,6 +76,7 @@ class ListingPage extends React.Component {
 const mapStateToProps = (state) => ({
   hidden: state.cart.hidden,
   currencyHidden: state.currency.hidden,
+  category: state.product.category,
 });
 
 export default connect(mapStateToProps)(ListingPage);

@@ -17,10 +17,9 @@ class Header extends React.Component {
     return (
       <div className={styles["navbar"]}>
         <div className={styles["link-container"]}>
-          <div className={styles["category-link"]}>WOMEN</div>
-          <div className={styles["category-link"]}>MEN</div>
-          <div className={styles["category-link"]}>KIDS</div>
-          <div className={styles["category-link"]}></div>
+          <div className={styles["category-link"]}>ALL</div>
+          <div className={styles["category-link"]}>TECH</div>
+          <div className={styles["category-link"]}> CLOTHES </div>
         </div>
         <div className={styles["icon-container"]}>
           <Logo />

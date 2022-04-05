@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0px 30px;
+  background-color: white;
 }
 .link-container {
   display: flex;
