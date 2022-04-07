@@ -3,6 +3,10 @@
   margin: 0px 30px;
   height: 100vh;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 .title {
   font-size: 36px;
   font-weight: 500;
@@ -30,14 +34,13 @@
   margin-top: auto;
 }
 
-.card-footer:hover {
-  cursor: pointer;
-}
-
 .product-name {
   color: #1d1f2271;
   font-size: 18px;
   font-weight: 400;
+}
+.product-name:hover {
+  cursor: pointer;
 }
 .product-price {
   font-size: 18px;

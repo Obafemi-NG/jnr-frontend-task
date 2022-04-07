@@ -3,6 +3,8 @@ import CartOverlay from "../../components/cart-overlay/cart-overlay";
 
 import { connect } from "react-redux";
 
+import { withRouter } from "../../withRouter";
+
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 
@@ -10,8 +12,13 @@ import styles from "./listing-page.module.css";
 import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdown";
 
 import Card from "../../components/card/card";
+import { Link } from "react-router-dom";
 
 class ListingPage extends React.Component {
+  // handleViewProduct = () => {
+  //   this.props.navigate("/:id");
+  // };
+
   render() {
     const PRODUCT_LISTS = gql`
       {
@@ -58,26 +65,31 @@ class ListingPage extends React.Component {
                   );
 
                   return (
-                    <Card key={product.id}>
-                      <div className={styles["img-container"]}>
-                        <img
-                          className={styles["product-img"]}
-                          src={product.gallery[0]}
-                          alt={product.name}
-                        />
-                      </div>
-                      <div className={styles["card-footer"]}>
-                        <p className={styles["product-name"]}>
-                          {" "}
-                          {product.name}{" "}
-                        </p>
-                        <p className={styles["product-price"]}>
-                          {" "}
-                          {productPrice.currency.symbol}
-                          {productPrice.amount}{" "}
-                        </p>
-                      </div>
-                    </Card>
+                    <Link to={`/${product.id}`} key={product.id}>
+                      <Card>
+                        <div className={styles["img-container"]}>
+                          <img
+                            className={styles["product-img"]}
+                            src={product.gallery[0]}
+                            alt={product.name}
+                          />
+                        </div>
+                        <div className={styles["card-footer"]}>
+                          <p
+                            onClick={this.handleViewProduct}
+                            className={styles["product-name"]}
+                          >
+                            {" "}
+                            {product.name}{" "}
+                          </p>
+                          <p className={styles["product-price"]}>
+                            {" "}
+                            {productPrice.currency.symbol}
+                            {productPrice.amount}{" "}
+                          </p>
+                        </div>
+                      </Card>
+                    </Link>
                   );
                 });
               }
