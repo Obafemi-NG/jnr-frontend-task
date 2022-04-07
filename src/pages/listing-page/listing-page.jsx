@@ -8,7 +8,6 @@ import { Query } from "@apollo/client/react/components";
 
 import styles from "./listing-page.module.css";
 import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdown";
-import { ReactComponent as Cart } from "../../assets/white-cart.svg";
 
 import Card from "../../components/card/card";
 
@@ -57,33 +56,28 @@ class ListingPage extends React.Component {
                     (currency) =>
                       currency.currency.label === this.props.preferredCurrency
                   );
+
                   return (
-                    <div className={styles.card}>
-                      <Card key={product.id}>
-                        <div className={styles["img-container"]}>
-                          <img
-                            className={styles["product-img"]}
-                            src={product.gallery[0]}
-                            alt={product.name}
-                          />
-                        </div>
-                        <div className={styles["card-footer"]}>
-                          <p className={styles["product-name"]}>
-                            {" "}
-                            {product.name}{" "}
-                          </p>
-                          <p className={styles["product-price"]}>
-                            {" "}
-                            {productPrice.currency.symbol}
-                            {productPrice.amount}{" "}
-                          </p>
-                        </div>
-                        <span className={styles["add-to-cart-btn"]}>
+                    <Card key={product.id}>
+                      <div className={styles["img-container"]}>
+                        <img
+                          className={styles["product-img"]}
+                          src={product.gallery[0]}
+                          alt={product.name}
+                        />
+                      </div>
+                      <div className={styles["card-footer"]}>
+                        <p className={styles["product-name"]}>
                           {" "}
-                          <Cart />{" "}
-                        </span>
-                      </Card>
-                    </div>
+                          {product.name}{" "}
+                        </p>
+                        <p className={styles["product-price"]}>
+                          {" "}
+                          {productPrice.currency.symbol}
+                          {productPrice.amount}{" "}
+                        </p>
+                      </div>
+                    </Card>
                   );
                 });
               }

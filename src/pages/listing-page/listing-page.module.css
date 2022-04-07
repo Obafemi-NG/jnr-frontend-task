@@ -5,7 +5,7 @@
 }
 .title {
   font-size: 36px;
-  font-weight: 400;
+  font-weight: 500;
 }
 .product-lists {
   margin-top: 15px;
@@ -29,6 +29,11 @@
 .card-footer {
   margin-top: auto;
 }
+
+.card-footer:hover {
+  cursor: pointer;
+}
+
 .product-name {
   color: #1d1f2271;
   font-size: 18px;
@@ -51,7 +56,9 @@
   margin-top: 250px;
   /* color: white; */
 }
-
+.card {
+  background-color: rebeccapurple;
+}
 .card:hover .add-to-cart-btn {
   /* display: block; */
   opacity: 0.8;
