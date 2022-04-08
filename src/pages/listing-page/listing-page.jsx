@@ -3,7 +3,7 @@ import CartOverlay from "../../components/cart-overlay/cart-overlay";
 
 import { connect } from "react-redux";
 
-import { withRouter } from "../../withRouter";
+// import { withRouter } from "../../withRouter";
 
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
@@ -13,12 +13,9 @@ import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdo
 
 import Card from "../../components/card/card";
 import { Link } from "react-router-dom";
+import AttributeBox from "../../components/attribute-box/attribute-box";
 
 class ListingPage extends React.Component {
-  // handleViewProduct = () => {
-  //   this.props.navigate("/:id");
-  // };
-
   render() {
     const PRODUCT_LISTS = gql`
       {
@@ -30,6 +27,13 @@ class ListingPage extends React.Component {
             description
             gallery
             inStock
+            attributes {
+              name
+              items {
+                displayValue
+                value
+              }
+            }
             prices {
               amount
               currency {
@@ -57,28 +61,33 @@ class ListingPage extends React.Component {
                 const { products } = categories.find(
                   (category) => category.name === this.props.category
                 );
-                products.map((product) => console.log(product.prices));
+
                 return products.map((product) => {
                   const productPrice = product.prices.find(
                     (currency) =>
                       currency.currency.label === this.props.preferredCurrency
                   );
 
+                  //I am close to cracking this ProductAttribute thingyyy!.
+                  // const productAttribute = product.attributes.map((attr) =>
+                  //   console.log(attr.items)
+                  // );
+
                   return (
-                    <Link to={`/${product.id}`} key={product.id}>
-                      <Card>
-                        <div className={styles["img-container"]}>
-                          <img
-                            className={styles["product-img"]}
-                            src={product.gallery[0]}
-                            alt={product.name}
-                          />
-                        </div>
+                    <Card key={product.id}>
+                      <div className={styles["img-container"]}>
+                        <img
+                          className={styles["product-img"]}
+                          src={product.gallery[0]}
+                          alt={product.name}
+                        />
+                      </div>
+                      <div className={styles["attribute-container"]}>
+                        <AttributeBox />
+                      </div>
+                      <Link to={`/${product.id}`}>
                         <div className={styles["card-footer"]}>
-                          <p
-                            onClick={this.handleViewProduct}
-                            className={styles["product-name"]}
-                          >
+                          <p className={styles["product-name"]}>
                             {" "}
                             {product.name}{" "}
                           </p>
@@ -88,8 +97,8 @@ class ListingPage extends React.Component {
                             {productPrice.amount}{" "}
                           </p>
                         </div>
-                      </Card>
-                    </Link>
+                      </Link>
+                    </Card>
                   );
                 });
               }
