@@ -3,11 +3,12 @@
   top: 50px;
   right: 30px;
   width: 85px;
-  height: 140px;
+  height: fit-content;
   background-color: white;
+
   box-shadow: 3px 3px 10px -4px rgba(202, 202, 202, 0.75);
   -webkit-box-shadow: 3px 3px 10px -4px rgba(202, 202, 202, 0.75);
   -moz-box-shadow: 3px 3px 10px -4px rgba(202, 202, 202, 0.75);
   z-index: 20;
-  padding: 10px;
+  padding: 5px;
 }

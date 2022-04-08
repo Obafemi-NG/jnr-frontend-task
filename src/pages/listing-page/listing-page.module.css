@@ -70,12 +70,13 @@ a {
 
 .card-footer {
   margin-top: auto;
+  padding-top: 10px;
 }
 
 .product-name {
   color: #1d1f2271;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .product-price {

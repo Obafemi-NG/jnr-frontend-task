@@ -5,7 +5,11 @@ import styles from "./currency-modal.module.css";
 class CurrencyModalOverlay extends React.Component {
   render() {
     const { children } = this.props;
-    return <div className={styles["currency-modal-overlay"]}>{children}</div>;
+    return (
+      <div className={styles["currency-modal-overlay"]}>
+        <div className={styles.children}>{children}</div>
+      </div>
+    );
   }
 }
 

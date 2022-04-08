@@ -1,14 +1,23 @@
 .currencies {
   height: 100%;
   display: flex;
-  flex-direction: column;
+}
+
+.currency {
+  /* padding-top: 5px;
+  padding-bottom: 5px; */
+  padding: 5px 5px 5px 5px;
+  display: flex;
+  width: 100%;
+  align-items: center;
   justify-content: space-between;
 }
-.currency {
-  padding: 5px;
-  height: 80%;
+
+.label {
+  font-weight: 500;
 }
+
 .currency:hover {
   cursor: pointer;
-  background-color: rgba(211, 211, 211, 0.205);
+  background-color: rgba(211, 211, 211, 0.164);
 }

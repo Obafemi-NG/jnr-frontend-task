@@ -10,7 +10,7 @@ class Card extends React.Component {
   }
 
   handleAddToCart = () => {
-    this.props.navigate("/product");
+    this.props.navigate("/cart");
   };
 
   render() {

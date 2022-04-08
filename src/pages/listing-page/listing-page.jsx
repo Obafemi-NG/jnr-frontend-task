@@ -84,7 +84,7 @@ class ListingPage extends React.Component {
                           return (
                             <span key={attr.name}>
                               <span className={styles["attribute-name"]}>
-                                {attr.name}
+                                {attr.name} :
                               </span>
                               {attr.items.map((item) => {
                                 return (
@@ -109,7 +109,7 @@ class ListingPage extends React.Component {
                           );
                         })}
                       </div>
-                      <Link to={`/${product.id}`}>
+                      <Link to={`/product/${product.id}`}>
                         <div className={styles["card-footer"]}>
                           <p className={styles["product-name"]}>
                             {" "}
