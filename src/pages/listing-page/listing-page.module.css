@@ -39,6 +39,34 @@ a {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+.attribute-button {
+  height: 23px;
+  background-color: black;
+  color: white;
+  border: #1d1f2271;
+  border: none;
+  width: fit-content;
+  border-radius: 5px;
+  border: 0.5px solid black;
+}
+
+.attribute-button:hover {
+  cursor: pointer;
+
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+
+.attributes {
+  margin-right: 5px;
+}
+
+.attribute-name {
+  display: flex;
+  font-size: 12px;
+  margin-top: 5px;
+}
 
 .card-footer {
   margin-top: auto;

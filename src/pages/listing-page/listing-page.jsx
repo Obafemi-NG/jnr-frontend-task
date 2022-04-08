@@ -13,7 +13,6 @@ import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdo
 
 import Card from "../../components/card/card";
 import { Link } from "react-router-dom";
-import AttributeBox from "../../components/attribute-box/attribute-box";
 
 class ListingPage extends React.Component {
   render() {
@@ -29,6 +28,7 @@ class ListingPage extends React.Component {
             inStock
             attributes {
               name
+              type
               items {
                 displayValue
                 value
@@ -69,9 +69,6 @@ class ListingPage extends React.Component {
                   );
 
                   //I am close to cracking this ProductAttribute thingyyy!.
-                  // const productAttribute = product.attributes.map((attr) =>
-                  //   console.log(attr.items)
-                  // );
 
                   return (
                     <Card key={product.id}>
@@ -83,7 +80,34 @@ class ListingPage extends React.Component {
                         />
                       </div>
                       <div className={styles["attribute-container"]}>
-                        <AttributeBox />
+                        {product.attributes.map((attr) => {
+                          return (
+                            <span key={attr.name}>
+                              <span className={styles["attribute-name"]}>
+                                {attr.name}
+                              </span>
+                              {attr.items.map((item) => {
+                                return (
+                                  <span className={styles.attributes}>
+                                    <button
+                                      style={{
+                                        backgroundColor: item.value,
+                                        border: item.value,
+                                        minWidth: "25px",
+                                      }}
+                                      className={styles["attribute-button"]}
+                                      onClick={this.handleAttribute}
+                                    >
+                                      {attr.type === "swatch"
+                                        ? " "
+                                        : item.displayValue}
+                                    </button>
+                                  </span>
+                                );
+                              })}
+                            </span>
+                          );
+                        })}
                       </div>
                       <Link to={`/${product.id}`}>
                         <div className={styles["card-footer"]}>

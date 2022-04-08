@@ -12,12 +12,13 @@ class AttributeBox extends React.Component {
   };
 
   render() {
+    const { children } = this.props;
     return (
       <button
         className={styles["attribute-button"]}
         onClick={this.handleAttribute}
       >
-        512GB
+        {children}
       </button>
     );
   }

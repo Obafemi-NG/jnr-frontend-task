@@ -1,6 +1,6 @@
 .card {
-  width: 310px;
-  height: 390px;
+  width: 330px;
+  height: fit-content;
   padding: 20px;
   position: relative;
   background-color: white;
@@ -16,7 +16,7 @@
   border-radius: 50%;
   display: none;
   background-color: #5ece7b;
-  margin-left: 220px;
+  margin-left: 250px;
   margin-top: 250px;
   /* color: white; */
 }
