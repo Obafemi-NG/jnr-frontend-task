@@ -16,13 +16,36 @@ import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
 class Header extends React.Component {
   render() {
     const { toggleCurrencyDropdown, hidden, currencySymbol } = this.props;
+    const GET_LINKS = gql`
+      {
+        categories {
+          name
+        }
+      }
+    `;
     return (
       <div className={styles["navbar"]}>
-        <div className={styles["link-container"]}>
-          <div className={styles["category-link"]}>ALL</div>
-          <div className={styles["category-link"]}>TECH</div>
-          <div className={styles["category-link"]}> CLOTHES </div>
-        </div>
+        <Query query={GET_LINKS}>
+          {({ loading, error, data }) => {
+            if (loading || error) return null;
+            else {
+              return (
+                <div className={styles["link-container"]}>
+                  {data.categories.map((category) => {
+                    return (
+                      <div
+                        key={category.name}
+                        className={styles["category-link"]}
+                      >
+                        {category.name.toUpperCase()}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            }
+          }}
+        </Query>
         <div className={styles["icon-container"]}>
           <Logo />
         </div>

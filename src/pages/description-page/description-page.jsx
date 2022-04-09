@@ -7,31 +7,24 @@ class DescriptionPage extends Component {
   render() {
     const PRODUCT_DETAILS = gql`
       {
-        product(id : huarache-x-stussy-le ) {
+        product(id: "huarache-x-stussy-le") {
           id
           name
-          inStock
-          gallery
           description
-          category
+          gallery
+          inStock
+          brand
           attributes {
-            id
             name
             type
-            items{
-                id
-                value
-                displayValue
-            }
           }
           prices {
-            currency{
-                label
-                symbol
-            }
             amount
+            currency {
+              label
+              symbol
+            }
           }
-          brand
         }
       }
     `;
@@ -43,7 +36,7 @@ class DescriptionPage extends Component {
             if (loading) return <div> Loading... </div>;
             if (error) return <div> Error Loading Product details. </div>;
             else {
-              data.product.map((prod) => console.log(prod.name));
+              console.log(data);
             }
           }}
         </Query>

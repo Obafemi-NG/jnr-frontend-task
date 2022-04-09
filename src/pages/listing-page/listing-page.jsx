@@ -82,7 +82,7 @@ class ListingPage extends React.Component {
                           return (
                             <span key={attr.name}>
                               <span className={styles["attribute-name"]}>
-                                {attr.name} :
+                                {attr.name.toUpperCase()} :
                               </span>
                               {attr.items.map((item) => {
                                 return (
