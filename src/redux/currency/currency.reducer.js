@@ -2,6 +2,8 @@ import { currencyActionType } from "./currency.type";
 
 const INITIAL_STATE = {
   hidden: true,
+  preferredCurrencyLabel: "USD",
+  preferredCurrencySymbol: "$",
 };
 export const currencyReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

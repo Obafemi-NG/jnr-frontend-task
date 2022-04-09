@@ -3,8 +3,6 @@ import CartOverlay from "../../components/cart-overlay/cart-overlay";
 
 import { connect } from "react-redux";
 
-// import { withRouter } from "../../withRouter";
-
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 
@@ -65,7 +63,7 @@ class ListingPage extends React.Component {
                 return products.map((product) => {
                   const productPrice = product.prices.find(
                     (currency) =>
-                      currency.currency.label === this.props.preferredCurrency
+                      currency.currency.label === this.props.currencyLabel
                   );
 
                   //I am close to cracking this ProductAttribute thingyyy!.
@@ -88,7 +86,10 @@ class ListingPage extends React.Component {
                               </span>
                               {attr.items.map((item) => {
                                 return (
-                                  <span className={styles.attributes}>
+                                  <span
+                                    key={item.value}
+                                    className={styles.attributes}
+                                  >
                                     <button
                                       style={{
                                         backgroundColor: item.value,
@@ -100,7 +101,7 @@ class ListingPage extends React.Component {
                                     >
                                       {attr.type === "swatch"
                                         ? " "
-                                        : item.displayValue}
+                                        : item.value}
                                     </button>
                                   </span>
                                 );
@@ -138,7 +139,7 @@ const mapStateToProps = (state) => ({
   hidden: state.cart.hidden,
   currencyHidden: state.currency.hidden,
   category: state.product.category,
-  preferredCurrency: state.product.preferredCurrency,
+  currencyLabel: state.currency.preferredCurrencyLabel,
 });
 
 export default connect(mapStateToProps)(ListingPage);

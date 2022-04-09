@@ -25,7 +25,7 @@ class CurrencyDropdown extends React.Component {
               <CurrencyModal>
                 {currency.map((curr) => {
                   return (
-                    <div className={styles.currencies}>
+                    <div key={curr.symbol} className={styles.currencies}>
                       <div className={styles.currency}>
                         <span className={styles.symbol}> {curr.symbol} </span>
                         <span className={styles.label}> {curr.label} </span>
@@ -38,13 +38,6 @@ class CurrencyDropdown extends React.Component {
           }
         }}
       </Query>
-      // <CurrencyModal>
-      //   <div className={styles.currencies}>
-      //     <div className={styles.currency}>$ USD</div>
-      //     <div className={styles.currency}>£ PND</div>
-      //     <div className={styles.currency}>€ EUR</div>
-      //   </div>
-      // </CurrencyModal>
     );
   }
 }

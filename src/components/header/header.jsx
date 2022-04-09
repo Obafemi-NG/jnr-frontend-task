@@ -4,6 +4,8 @@ import styles from "./header.module.css";
 import { connect } from "react-redux";
 
 import { toggleCurrencyDropdown } from "../../redux/currency/currency.action";
+import { Query } from "@apollo/client/react/components";
+import { gql } from "@apollo/client";
 
 import CartIcon from "../cart-icon/cart-icon";
 
@@ -13,7 +15,7 @@ import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
 
 class Header extends React.Component {
   render() {
-    const { toggleCurrencyDropdown, hidden } = this.props;
+    const { toggleCurrencyDropdown, hidden, currencySymbol } = this.props;
     return (
       <div className={styles["navbar"]}>
         <div className={styles["link-container"]}>
@@ -26,7 +28,7 @@ class Header extends React.Component {
         </div>
         <div className={styles["navbar-left"]}>
           <div className={styles.icon}>
-            $
+            {currencySymbol}
             <span
               onClick={toggleCurrencyDropdown}
               className={styles["angle-icon"]}
@@ -45,6 +47,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => ({
   hidden: state.currency.hidden,
+  currencySymbol: state.currency.preferredCurrencySymbol,
 });
 
 const mapDispatchToProps = (dispatch) => ({

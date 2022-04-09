@@ -6,52 +6,12 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-  // useQuery,
-  // gql,
-} from "@apollo/client";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
 });
-
-// const CATEGORY_NAME = gql`
-//   query {
-//     categories {
-//       name
-//     }
-//   }
-// `;
-
-// export const CategoryName = () => {
-//   const { loading, error, data } = useQuery(CATEGORY_NAME);
-//   if (error) return <p> Error! {error.message} </p>;
-//   if (loading) return <p> Loading... </p>;
-//   console.log(data);
-// };
-
-// client
-//   .query({
-//     query: gql`
-//       query {
-//         categories {
-//           name
-//           products {
-//             id
-//             name
-//             inStock
-//             description
-//             gallery
-//           }
-//         }
-//       }
-//     `,
-//   })
-//   .then((result) => console.log(result));
 
 const container = document.getElementById("root");
 

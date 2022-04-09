@@ -41,21 +41,24 @@ a {
 }
 .attribute-button {
   height: 23px;
-  background-color: black;
-  color: white;
-  border: #1d1f2271;
-  border: none;
+  margin-right: 10px;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
   width: fit-content;
   border-radius: 5px;
   border: 0.5px solid black;
 }
 
+.attribute-button:active {
+  background-color: black;
+  color: white;
+}
+
 .attribute-button:hover {
   cursor: pointer;
-
-  background-color: white;
-  border: 1px solid black;
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 .attributes {
@@ -94,11 +97,6 @@ a {
   background-color: #5ece7b;
   margin-left: 220px;
   margin-top: 250px;
-  /* color: white; */
-}
-
-.card {
-  background-color: rebeccapurple;
 }
 
 .card:hover .add-to-cart-btn {
