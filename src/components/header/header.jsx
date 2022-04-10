@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 class Header extends React.Component {
   render() {
-    const { toggleCurrencyDropdown, hidden, currencySymbol, changeCategory } =
+    const { toggleCurrencyDropdown, hidden, currencyLabel, changeCategory } =
       this.props;
     const GET_LINKS = gql`
       {
@@ -37,13 +37,14 @@ class Header extends React.Component {
                 <div className={styles["link-container"]}>
                   {data.categories.map((category) => {
                     return (
-                      <div
+                      <Link
+                        to={`${category.name}`}
                         onClick={() => changeCategory(category.name)}
                         key={category.name}
                         className={styles["category-link"]}
                       >
                         {category.name.toUpperCase()}
-                      </div>
+                      </Link>
                     );
                   })}
                 </div>
@@ -58,7 +59,7 @@ class Header extends React.Component {
         </div>
         <div className={styles["navbar-left"]}>
           <div className={styles.icon}>
-            {currencySymbol}
+            {currencyLabel}
             <span
               onClick={toggleCurrencyDropdown}
               className={styles["angle-icon"]}
@@ -77,7 +78,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => ({
   hidden: state.currency.hidden,
-  currencySymbol: state.currency.preferredCurrencySymbol,
+  currencyLabel: state.currency.preferredCurrencyLabel,
 });
 
 const mapDispatchToProps = (dispatch) => ({
