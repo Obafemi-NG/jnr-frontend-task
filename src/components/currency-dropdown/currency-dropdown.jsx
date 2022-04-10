@@ -2,10 +2,13 @@ import React from "react";
 import styles from "./currency-dropdown.module.css";
 import { Query } from "@apollo/client/react/components";
 import { gql } from "@apollo/client";
+import { connect } from "react-redux";
 import CurrencyModal from "../currency-modal/currency-modal";
+import { ChangeCurrency } from "../../redux/currency/currency.action";
 
 class CurrencyDropdown extends React.Component {
   render() {
+    const { ChangeCurrency } = this.props;
     const CURRENCY_LIST = gql`
       {
         currencies {
@@ -26,7 +29,10 @@ class CurrencyDropdown extends React.Component {
                 {currency.map((curr) => {
                   return (
                     <div key={curr.symbol} className={styles.currencies}>
-                      <div className={styles.currency}>
+                      <div
+                        onClick={() => ChangeCurrency(curr.label)}
+                        className={styles.currency}
+                      >
                         <span className={styles.symbol}> {curr.symbol} </span>
                         <span className={styles.label}> {curr.label} </span>
                       </div>
@@ -42,4 +48,8 @@ class CurrencyDropdown extends React.Component {
   }
 }
 
-export default CurrencyDropdown;
+const mapDispatchToProps = (dispatch) => ({
+  ChangeCurrency: (currency) => dispatch(ChangeCurrency(currency)),
+});
+
+export default connect(null, mapDispatchToProps)(CurrencyDropdown);

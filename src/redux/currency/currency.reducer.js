@@ -12,6 +12,11 @@ export const currencyReducer = (state = INITIAL_STATE, action) => {
         ...state,
         hidden: !state.hidden,
       };
+    case currencyActionType.CHANGE_CURRENCY:
+      return {
+        ...state,
+        preferredCurrencyLabel: action.payload,
+      };
     default:
       return state;
   }

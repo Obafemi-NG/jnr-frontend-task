@@ -1,6 +1,8 @@
 import React from "react";
 import Modal from "../cart-modal/cart-modal";
 import styles from "./cart-overlay.module.css";
+import { connect } from "react-redux";
+import { toggleCart } from "../../redux/cart/cart.action";
 
 import { withRouter } from "../../withRouter";
 
@@ -12,6 +14,7 @@ class CartOverlay extends React.Component {
 
   handleViewBag = () => {
     this.props.navigate("/cart");
+    this.props.toggleCart();
   };
 
   render() {
@@ -33,5 +36,7 @@ class CartOverlay extends React.Component {
     );
   }
 }
-
-export default withRouter(CartOverlay);
+const mapDispatchToProps = (dispatch) => ({
+  toggleCart: () => dispatch(toggleCart()),
+});
+export default withRouter(connect(null, mapDispatchToProps)(CartOverlay));
