@@ -35,9 +35,6 @@ class DescriptionPage extends Component {
           {({ loading, error, data }) => {
             if (loading) return <div> Loading... </div>;
             if (error) return <div> Error Loading Product details. </div>;
-            else {
-              console.log(data);
-            }
           }}
         </Query>
       </div>
