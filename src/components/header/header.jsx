@@ -67,7 +67,7 @@ class Header extends React.Component {
               {hidden ? <Angledown /> : <Angleup />}
             </span>
           </div>
-          <div className={styles.icon}>
+          <div className={`${styles.icon} ${styles["cart-icon"]} `}>
             <CartIcon />
           </div>
         </div>

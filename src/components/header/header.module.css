@@ -9,8 +9,6 @@
   justify-content: space-between;
   padding: 0px 30px;
   background-color: white;
-
-  /* background-color: red; */
   opacity: 0.99;
 }
 .link-container {
@@ -49,11 +47,11 @@
   margin-left: 10px;
   position: relative;
   display: flex;
-  /* background-color: red; */
 }
-.icon:hover {
-  cursor: pointer;
-}
-.angle-icon {
+
+.angle-icon,
+.cart-icon {
   padding-left: 5px;
+
+  cursor: pointer;
 }
