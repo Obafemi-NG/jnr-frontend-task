@@ -18,7 +18,7 @@ class DescriptionPage extends Component {
     this.setState({ imageIndex: index });
   };
   render() {
-    const { hidden, currencyHidden } = this.props;
+    const { hidden, currencyHidden, currencyLabel } = this.props;
     const currentID = window.location.pathname.split("/")[2];
     const PRODUCT_DETAILS = gql`
       {
@@ -60,7 +60,9 @@ class DescriptionPage extends Component {
             else {
               console.log(data);
               const productInfo = data.product;
-              console.log(productInfo.description);
+              const productPrice = productInfo.prices.find(
+                (price) => price.currency.label === currencyLabel
+              );
               return (
                 <div className={styles["description-container"]}>
                   <div className={styles["images-section"]}>
@@ -89,14 +91,17 @@ class DescriptionPage extends Component {
                     <div className={styles["attribute-section"]}>
                       {productInfo.attributes.map((attribute) => {
                         return (
-                          <span>
+                          <span key={attribute.id}>
                             <h4 className={styles["attribute-title"]}>
                               {" "}
                               {`${attribute.name.toUpperCase()} :`}{" "}
                             </h4>
                             {attribute.items.map((item) => {
                               return (
-                                <span className={styles.attribute}>
+                                <span
+                                  key={item.id}
+                                  className={styles.attribute}
+                                >
                                   <button
                                     style={{
                                       backgroundColor: item.value,
@@ -116,6 +121,13 @@ class DescriptionPage extends Component {
                           </span>
                         );
                       })}
+                    </div>
+                    <div className={styles["price-section"]}>
+                      <h4 className={styles["price-title"]}> PRICE : </h4>
+                      <p className={styles["price-amount"]}>
+                        {" "}
+                        {productPrice.currency.symbol} {productPrice.amount}{" "}
+                      </p>
                     </div>
                     <div className={styles["cta-section"]}>
                       <button className={styles["cta-button"]}>
@@ -143,6 +155,7 @@ class DescriptionPage extends Component {
 const mapStateToProps = (state) => ({
   hidden: state.cart.hidden,
   currencyHidden: state.currency.hidden,
+  currencyLabel: state.currency.preferredCurrencyLabel,
 });
 
 export default connect(mapStateToProps)(DescriptionPage);
