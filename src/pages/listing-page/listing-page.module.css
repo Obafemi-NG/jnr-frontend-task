@@ -39,14 +39,20 @@ a {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+.attributes {
+  display: flex;
+}
 .attribute-button {
   height: 23px;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
   margin-right: 10px;
   background-color: white;
   border: 1px solid black;
   color: black;
   width: fit-content;
-  border-radius: 5px;
   border: 0.5px solid black;
 }
 

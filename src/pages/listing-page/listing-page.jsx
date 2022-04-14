@@ -84,28 +84,27 @@ class ListingPage extends React.Component {
                               <span className={styles["attribute-name"]}>
                                 {attr.name.toUpperCase()} :
                               </span>
-                              {attr.items.map((item) => {
-                                return (
-                                  <span
-                                    key={item.value}
-                                    className={styles.attributes}
-                                  >
-                                    <button
-                                      style={{
-                                        backgroundColor: item.value,
-                                        border: item.value,
-                                        minWidth: "25px",
-                                      }}
-                                      className={styles["attribute-button"]}
-                                      onClick={this.handleAttribute}
-                                    >
-                                      {attr.type === "swatch"
-                                        ? " "
-                                        : item.value}
-                                    </button>
-                                  </span>
-                                );
-                              })}
+                              <div className={styles.attributes}>
+                                {attr.items.map((item) => {
+                                  return (
+                                    <span key={item.value}>
+                                      <div
+                                        style={{
+                                          backgroundColor: item.value,
+                                          border: item.value,
+                                          minWidth: "25px",
+                                        }}
+                                        className={styles["attribute-button"]}
+                                        onClick={this.handleAttribute}
+                                      >
+                                        {attr.type === "swatch"
+                                          ? " "
+                                          : item.value}
+                                      </div>
+                                    </span>
+                                  );
+                                })}
+                              </div>
                             </span>
                           );
                         })}

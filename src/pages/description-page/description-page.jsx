@@ -96,28 +96,27 @@ class DescriptionPage extends Component {
                               {" "}
                               {`${attribute.name.toUpperCase()} :`}{" "}
                             </h4>
-                            {attribute.items.map((item) => {
-                              return (
-                                <span
-                                  key={item.id}
-                                  className={styles.attribute}
-                                >
-                                  <button
-                                    style={{
-                                      backgroundColor: item.value,
-                                      border: item.value,
-                                      minWidth: "25px",
-                                    }}
-                                    className={styles["attribute-button"]}
-                                  >
-                                    {" "}
-                                    {attribute.type === "swatch"
-                                      ? ""
-                                      : item.value}{" "}
-                                  </button>
-                                </span>
-                              );
-                            })}
+                            <div className={styles.attributes}>
+                              {attribute.items.map((item) => {
+                                return (
+                                  <div key={item.id}>
+                                    <div
+                                      style={{
+                                        backgroundColor: item.value,
+                                        border: item.value,
+                                        minWidth: "25px",
+                                      }}
+                                      className={styles["attribute-button"]}
+                                    >
+                                      {" "}
+                                      {attribute.type === "swatch"
+                                        ? ""
+                                        : item.value}{" "}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
                           </span>
                         );
                       })}
