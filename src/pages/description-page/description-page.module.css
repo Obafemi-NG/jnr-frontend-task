@@ -26,10 +26,12 @@
   flex-direction: column;
 }
 .main-image-section {
+  /* background-color: rebeccapurple; */
+  padding-top: 50px;
   margin-left: 40px;
   display: flex;
   width: 42%;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 .main-image {
@@ -38,8 +40,8 @@
   object-fit: contain;
 }
 .info-section {
-  border: 1px solid aqua;
-  width: 35%;
+  /* border: 1px solid aqua; */
+  width: 40%;
   margin-left: auto;
   padding: 30px;
 }
@@ -68,4 +70,7 @@
 }
 .cta-button:hover {
   cursor: pointer;
+}
+.description-section {
+  margin-top: 20px;
 }

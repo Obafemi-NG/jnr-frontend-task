@@ -92,6 +92,12 @@ class DescriptionPage extends Component {
                         ADD TO CART{" "}
                       </button>
                     </div>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: productInfo.description,
+                      }}
+                      className={styles["description-section"]}
+                    ></div>
                   </div>
                 </div>
               );
