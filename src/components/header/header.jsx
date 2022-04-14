@@ -3,6 +3,8 @@ import styles from "./header.module.css";
 
 import { connect } from "react-redux";
 
+import { createStructuredSelector } from "reselect";
+
 import { toggleCurrencyDropdown } from "../../redux/currency/currency.action";
 import { changeCategory } from "../../redux/product/product.action";
 
@@ -15,6 +17,8 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as Angledown } from "../../assets/angle-down.svg";
 import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
 import { Link } from "react-router-dom";
+import { selectCurrencyHidden } from "../../redux/currency/currency.selector";
+import { selectChangeCurrency } from "../../redux/currency/currency.selector";
 
 class Header extends React.Component {
   render() {
@@ -76,9 +80,14 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  hidden: state.currency.hidden,
-  currencyLabel: state.currency.preferredCurrencyLabel,
+// const mapStateToProps = (state) => ({
+//   hidden: state.currency.hidden,
+//   currencyLabel: state.currency.preferredCurrencyLabel,
+// });
+
+const mapStateToProps = createStructuredSelector({
+  hidden: selectCurrencyHidden,
+  currencyLabel: selectChangeCurrency,
 });
 
 const mapDispatchToProps = (dispatch) => ({
