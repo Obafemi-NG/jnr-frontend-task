@@ -51,12 +51,41 @@
 .sub-title {
   margin-top: 10px;
 }
+.attribute-section {
+  margin-top: 30px;
+}
+.attribute-title {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.attribute-button {
+  height: 23px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  width: fit-content;
+  border-radius: 5px;
+  border: 0.5px solid black;
+}
 
+.attribute-button:active {
+  background-color: black;
+  color: white;
+}
+
+.attribute-button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
 .cta-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .cta-button {
   width: 100%;
@@ -72,5 +101,5 @@
   cursor: pointer;
 }
 .description-section {
-  margin-top: 20px;
+  margin-top: 30px;
 }

@@ -86,6 +86,37 @@ class DescriptionPage extends Component {
                   <div className={styles["info-section"]}>
                     <h1 className={styles.title}>{productInfo.name}</h1>
                     <p className={styles["sub-title"]}> {productInfo.brand} </p>
+                    <div className={styles["attribute-section"]}>
+                      {productInfo.attributes.map((attribute) => {
+                        return (
+                          <span>
+                            <h4 className={styles["attribute-title"]}>
+                              {" "}
+                              {`${attribute.name.toUpperCase()} :`}{" "}
+                            </h4>
+                            {attribute.items.map((item) => {
+                              return (
+                                <span className={styles.attribute}>
+                                  <button
+                                    style={{
+                                      backgroundColor: item.value,
+                                      border: item.value,
+                                      minWidth: "25px",
+                                    }}
+                                    className={styles["attribute-button"]}
+                                  >
+                                    {" "}
+                                    {attribute.type === "swatch"
+                                      ? ""
+                                      : item.value}{" "}
+                                  </button>
+                                </span>
+                              );
+                            })}
+                          </span>
+                        );
+                      })}
+                    </div>
                     <div className={styles["cta-section"]}>
                       <button className={styles["cta-button"]}>
                         {" "}
