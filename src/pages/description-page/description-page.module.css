@@ -2,5 +2,70 @@
   padding: 100px 8px;
   margin: 0px 30px;
   height: 100vh;
-  /* background-color: rebeccapurple; */
+}
+
+.description-container {
+  display: flex;
+}
+.individual-image {
+  width: 100px;
+  padding: 5px;
+  margin-bottom: 5px;
+  height: 100px;
+}
+
+.individual-image:hover {
+  cursor: pointer;
+  padding: 5px;
+  border: 1.2px solid rgba(169, 169, 169, 0.141);
+  border-radius: 10px;
+}
+
+.images-section {
+  display: flex;
+  flex-direction: column;
+}
+.main-image-section {
+  margin-left: 40px;
+  display: flex;
+  width: 42%;
+  align-items: center;
+  justify-content: center;
+}
+.main-image {
+  max-width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+.info-section {
+  border: 1px solid aqua;
+  width: 35%;
+  margin-left: auto;
+  padding: 30px;
+}
+
+.title {
+}
+.sub-title {
+  margin-top: 10px;
+}
+
+.cta-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+.cta-button {
+  width: 100%;
+  align-self: center;
+  background-color: #5aee87;
+  border: none;
+  height: 45px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+.cta-button:hover {
+  cursor: pointer;
 }
