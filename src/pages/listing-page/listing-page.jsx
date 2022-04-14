@@ -9,6 +9,8 @@ import { Query } from "@apollo/client/react/components";
 import styles from "./listing-page.module.css";
 import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdown";
 
+import { addItem } from "../../redux/cart/cart.action";
+
 import Card from "../../components/card/card";
 import { Link } from "react-router-dom";
 
@@ -141,4 +143,8 @@ const mapStateToProps = (state) => ({
   currencyLabel: state.currency.preferredCurrencyLabel,
 });
 
-export default connect(mapStateToProps)(ListingPage);
+const mapDispatchToProps = (dispatch) => ({
+  addItemToCart: (item) => dispatch(addItem(item)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);

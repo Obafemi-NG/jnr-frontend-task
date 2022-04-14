@@ -5,6 +5,7 @@ import styles from "./description-page.module.css";
 import CartOverlay from "../../components/cart-overlay/cart-overlay";
 import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdown";
 import { connect } from "react-redux";
+import { addItem } from "../../redux/cart/cart.action";
 
 class DescriptionPage extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class DescriptionPage extends Component {
     this.setState({ imageIndex: index });
   };
   render() {
+    const { addItemToCart } = this.props;
     const { hidden, currencyHidden, currencyLabel } = this.props;
     const currentID = window.location.pathname.split("/")[2];
     const PRODUCT_DETAILS = gql`
@@ -129,7 +131,10 @@ class DescriptionPage extends Component {
                       </p>
                     </div>
                     <div className={styles["cta-section"]}>
-                      <button className={styles["cta-button"]}>
+                      <button
+                        onClick={() => addItemToCart(productInfo)}
+                        className={styles["cta-button"]}
+                      >
                         {" "}
                         ADD TO CART{" "}
                       </button>
@@ -157,4 +162,8 @@ const mapStateToProps = (state) => ({
   currencyLabel: state.currency.preferredCurrencyLabel,
 });
 
-export default connect(mapStateToProps)(DescriptionPage);
+const mapDispatchToProps = (dispatch) => ({
+  addItemToCart: (item) => dispatch(addItem(item)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DescriptionPage);

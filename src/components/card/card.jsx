@@ -1,27 +1,16 @@
 import React from "react";
 import styles from "./card.module.css";
-import { withRouter } from "../../withRouter";
+import { connect } from "react-redux";
 import { ReactComponent as Cart } from "../../assets/white-cart.svg";
+import { addItem } from "../../redux/cart/cart.action";
 
 class Card extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleAddToCart = this.handleAddToCart.bind(this);
-  }
-
-  handleAddToCart = () => {
-    this.props.navigate("/cart");
-  };
-
   render() {
-    const { children } = this.props;
+    const { children, addItemToCart } = this.props;
     return (
       <div className={styles.card}>
         {children}
-        <span
-          onClick={this.handleAddToCart}
-          className={styles["add-to-cart-btn"]}
-        >
+        <span className={styles["add-to-cart-btn"]}>
           {" "}
           <Cart />{" "}
         </span>
@@ -30,4 +19,8 @@ class Card extends React.Component {
   }
 }
 
-export default withRouter(Card);
+const mapDispatchToProps = (dispatch) => ({
+  addItemToCart: (item) => dispatch(addItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(Card);
