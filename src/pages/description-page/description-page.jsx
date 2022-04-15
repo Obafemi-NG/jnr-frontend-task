@@ -113,7 +113,7 @@ class DescriptionPage extends Component {
                                           backgroundColor: item.value,
                                           minWidth: "30px",
                                         }}
-                                        for={item.value}
+                                        htmlFor={item.value}
                                       >
                                         {attribute.type === "swatch"
                                           ? " "

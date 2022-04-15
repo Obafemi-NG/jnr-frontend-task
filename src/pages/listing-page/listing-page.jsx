@@ -17,6 +17,22 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Cart } from "../../assets/white-cart.svg";
 
 class ListingPage extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     cartProduct: {
+  //       name: "",
+  //       price: "",
+  //       image: null,
+  //       brand: "",
+  //       id: "",
+  //       attributes: {},
+  //     },
+  //     attributeError:
+  //       "Selecting an attribute is compulsory before adding to Cart",
+  //   };
+  // };
+
   render() {
     const PRODUCT_LISTS = gql`
       {
@@ -48,7 +64,7 @@ class ListingPage extends React.Component {
         }
       }
     `;
-    const { hidden, currencyHidden, category } = this.props;
+    const { hidden, currencyHidden, category, addItemToCart } = this.props;
     return (
       <div className={styles.overview}>
         {hidden ? null : <CartOverlay />}
@@ -64,7 +80,6 @@ class ListingPage extends React.Component {
                 const { products } = categories.find(
                   (category) => category.name === this.props.category
                 );
-
                 return products.map((product) => {
                   const productPrice = product.prices.find(
                     (currency) =>
@@ -74,7 +89,7 @@ class ListingPage extends React.Component {
                   //I am close to cracking this ProductAttribute thingyyy!.
 
                   return (
-                    <Card key={product.id}>
+                    <Card inStock={product.inStock} key={product.id}>
                       <div className={styles["card-overlay"]}>
                         <div className={styles["img-container"]}>
                           <img
@@ -82,6 +97,10 @@ class ListingPage extends React.Component {
                             src={product.gallery[0]}
                             alt={product.name}
                           />
+                          <div className={styles["out-of-stock"]}>
+                            {" "}
+                            {product.inStock && "OUT OF STOCK"}{" "}
+                          </div>
                         </div>
                         <div className={styles["attribute-container"]}>
                           {product.attributes.map((attr) => {
@@ -98,7 +117,7 @@ class ListingPage extends React.Component {
                                           className={styles["attribute-box"]}
                                         >
                                           <input
-                                            id={item.id}
+                                            id={item.value}
                                             type="checkbox"
                                             name={item.value}
                                           />
@@ -107,7 +126,7 @@ class ListingPage extends React.Component {
                                               backgroundColor: item.value,
                                               minWidth: "30px",
                                             }}
-                                            for={item.value}
+                                            htmlFor={item.value}
                                           >
                                             {attr.type === "swatch"
                                               ? " "
@@ -135,10 +154,27 @@ class ListingPage extends React.Component {
                             </p>
                           </div>
                         </Link>
-                        <div className={styles["add-to-cart-btn"]}>
-                          {" "}
-                          <Cart />{" "}
-                        </div>
+                        {!product.inStock && (
+                          <div
+                            // onClick={
+                            //   (this.handleAddToCart = () => {
+                            //     this.setState({
+                            //       cartProduct: {
+                            //         name: product.name,
+                            //         price: productPrice.amount,
+                            //         image: product.gallery[0],
+                            //         brand: product.brand,
+                            //         id: product.id,
+                            //       },
+                            //     });
+                            //     addItemToCart(this.state.cartProduct);
+                            //   })
+                            // }
+                            className={styles["add-to-cart-btn"]}
+                          >
+                            <Cart />
+                          </div>
+                        )}
                       </div>
                     </Card>
                   );

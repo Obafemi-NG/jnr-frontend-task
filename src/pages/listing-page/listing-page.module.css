@@ -51,6 +51,12 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  background-color: rebeccapurple;
+}
+
+.out-of-stock {
+  position: absolute;
 }
 
 .product-img {
