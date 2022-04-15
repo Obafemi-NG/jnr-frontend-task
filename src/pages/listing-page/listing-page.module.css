@@ -57,6 +57,7 @@ a {
 
 .out-of-stock {
   position: absolute;
+  font-weight: 500;
 }
 
 .product-img {
