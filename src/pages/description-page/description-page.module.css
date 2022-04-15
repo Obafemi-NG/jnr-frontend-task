@@ -63,30 +63,44 @@
   font-size: 14px;
   margin-bottom: 5px;
   font-weight: 600;
+  margin-top: 10px;
 }
-.attribute-button {
-  height: 23px;
-  padding: 10px;
+
+.attributes {
+  display: flex;
+}
+.attribute-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  background-color: white;
-  border: 1px solid black;
-  color: black;
+  position: relative;
+  margin-right: 5px;
+}
+label {
+  display: flex;
+  border: solid 1px black;
+  padding: 5px;
   width: fit-content;
-  border: 0.5px solid black;
+  height: 25px;
+  color: black;
+  text-align: center;
+  line-height: 12px;
 }
 
-.attribute-button:active {
-  background-color: black;
-  color: white;
-}
-
-.attribute-button:hover {
+input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
   cursor: pointer;
-  background-color: black;
+}
+
+input:checked ~ label {
+  border: 2px solid green;
+  background-color: green;
+  border-radius: 5px;
   color: white;
 }
 

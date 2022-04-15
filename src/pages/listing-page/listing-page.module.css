@@ -42,33 +42,39 @@ a {
 .attributes {
   display: flex;
 }
-.attribute-button {
-  height: 23px;
+.attribute-box {
   display: flex;
-  padding: 10px;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  width: fit-content;
-  border: 0.5px solid black;
-}
-
-.attribute-button:active {
-  background-color: black;
-  color: white;
-}
-
-.attribute-button:hover {
-  cursor: pointer;
-  background-color: black;
-  color: white;
-}
-
-.attributes {
+  position: relative;
   margin-right: 5px;
+}
+label {
+  display: flex;
+  border: solid 1px black;
+  padding: 5px;
+  width: fit-content;
+  height: 25px;
+  color: black;
+  text-align: center;
+  line-height: 12px;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+input:checked ~ label {
+  border: 2px solid green;
+  background-color: green;
+  border-radius: 5px;
+  color: white;
 }
 
 .attribute-name {

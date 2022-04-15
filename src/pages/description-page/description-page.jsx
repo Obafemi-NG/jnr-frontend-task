@@ -98,7 +98,7 @@ class DescriptionPage extends Component {
                               {" "}
                               {`${attribute.name.toUpperCase()} :`}{" "}
                             </h4>
-                            <div className={styles.attributes}>
+                            {/* <div className={styles.attributes}>
                               {attribute.items.map((item) => {
                                 return (
                                   <div key={item.id}>
@@ -116,6 +116,32 @@ class DescriptionPage extends Component {
                                         : item.value}{" "}
                                     </div>
                                   </div>
+                                );
+                              })}
+                            </div> */}
+                            <div className={styles.attributes}>
+                              {attribute.items.map((item) => {
+                                return (
+                                  <span key={item.id}>
+                                    <div className={styles["attribute-box"]}>
+                                      <input
+                                        id={item.id}
+                                        type="checkbox"
+                                        name={item.value}
+                                      />
+                                      <label
+                                        style={{
+                                          backgroundColor: item.value,
+                                          minWidth: "30px",
+                                        }}
+                                        for={item.value}
+                                      >
+                                        {attribute.type === "swatch"
+                                          ? " "
+                                          : item.value}{" "}
+                                      </label>
+                                    </div>
+                                  </span>
                                 );
                               })}
                             </div>

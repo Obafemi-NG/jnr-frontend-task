@@ -27,6 +27,7 @@ class ListingPage extends React.Component {
             gallery
             inStock
             attributes {
+              id
               name
               type
               items {
@@ -90,18 +91,23 @@ class ListingPage extends React.Component {
                                 {attr.items.map((item) => {
                                   return (
                                     <span key={item.value}>
-                                      <div
-                                        style={{
-                                          backgroundColor: item.value,
-                                          border: item.value,
-                                          minWidth: "25px",
-                                        }}
-                                        className={styles["attribute-button"]}
-                                        onClick={this.handleAttribute}
-                                      >
-                                        {attr.type === "swatch"
-                                          ? " "
-                                          : item.value}
+                                      <div className={styles["attribute-box"]}>
+                                        <input
+                                          id={item.id}
+                                          type="checkbox"
+                                          name={item.value}
+                                        />
+                                        <label
+                                          style={{
+                                            backgroundColor: item.value,
+                                            minWidth: "30px",
+                                          }}
+                                          for={item.value}
+                                        >
+                                          {attr.type === "swatch"
+                                            ? " "
+                                            : item.value}{" "}
+                                        </label>
                                       </div>
                                     </span>
                                   );
