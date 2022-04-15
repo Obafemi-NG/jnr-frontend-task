@@ -7,15 +7,7 @@ import { addItem } from "../../redux/cart/cart.action";
 class Card extends React.Component {
   render() {
     const { children, addItemToCart } = this.props;
-    return (
-      <div className={styles.card}>
-        {children}
-        <span className={styles["add-to-cart-btn"]}>
-          {" "}
-          <Cart />{" "}
-        </span>
-      </div>
-    );
+    return <div className={styles.card}>{children}</div>;
   }
 }
 

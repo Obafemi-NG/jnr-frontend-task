@@ -98,27 +98,6 @@ class DescriptionPage extends Component {
                               {" "}
                               {`${attribute.name.toUpperCase()} :`}{" "}
                             </h4>
-                            {/* <div className={styles.attributes}>
-                              {attribute.items.map((item) => {
-                                return (
-                                  <div key={item.id}>
-                                    <div
-                                      style={{
-                                        backgroundColor: item.value,
-                                        border: item.value,
-                                        minWidth: "25px",
-                                      }}
-                                      className={styles["attribute-button"]}
-                                    >
-                                      {" "}
-                                      {attribute.type === "swatch"
-                                        ? ""
-                                        : item.value}{" "}
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div> */}
                             <div className={styles.attributes}>
                               {attribute.items.map((item) => {
                                 return (

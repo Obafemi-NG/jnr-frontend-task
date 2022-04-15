@@ -14,6 +14,8 @@ import { addItem } from "../../redux/cart/cart.action";
 import Card from "../../components/card/card";
 import { Link } from "react-router-dom";
 
+import { ReactComponent as Cart } from "../../assets/white-cart.svg";
+
 class ListingPage extends React.Component {
   render() {
     const PRODUCT_LISTS = gql`
@@ -73,63 +75,71 @@ class ListingPage extends React.Component {
 
                   return (
                     <Card key={product.id}>
-                      <div className={styles["img-container"]}>
-                        <img
-                          className={styles["product-img"]}
-                          src={product.gallery[0]}
-                          alt={product.name}
-                        />
-                      </div>
-                      <div className={styles["attribute-container"]}>
-                        {product.attributes.map((attr) => {
-                          return (
-                            <span key={attr.name}>
-                              <span className={styles["attribute-name"]}>
-                                {attr.name.toUpperCase()} :
-                              </span>
-                              <div className={styles.attributes}>
-                                {attr.items.map((item) => {
-                                  return (
-                                    <span key={item.value}>
-                                      <div className={styles["attribute-box"]}>
-                                        <input
-                                          id={item.id}
-                                          type="checkbox"
-                                          name={item.value}
-                                        />
-                                        <label
-                                          style={{
-                                            backgroundColor: item.value,
-                                            minWidth: "30px",
-                                          }}
-                                          for={item.value}
-                                        >
-                                          {attr.type === "swatch"
-                                            ? " "
-                                            : item.value}{" "}
-                                        </label>
-                                      </div>
-                                    </span>
-                                  );
-                                })}
-                              </div>
-                            </span>
-                          );
-                        })}
-                      </div>
-                      <Link to={`/product/${product.id}`}>
-                        <div className={styles["card-footer"]}>
-                          <p className={styles["product-name"]}>
-                            {" "}
-                            {product.name}{" "}
-                          </p>
-                          <p className={styles["product-price"]}>
-                            {" "}
-                            {productPrice.currency.symbol}
-                            {productPrice.amount}{" "}
-                          </p>
+                      <div className={styles["card-overlay"]}>
+                        <div className={styles["img-container"]}>
+                          <img
+                            className={styles["product-img"]}
+                            src={product.gallery[0]}
+                            alt={product.name}
+                          />
                         </div>
-                      </Link>
+                        <div className={styles["attribute-container"]}>
+                          {product.attributes.map((attr) => {
+                            return (
+                              <span key={attr.name}>
+                                <span className={styles["attribute-name"]}>
+                                  {attr.name.toUpperCase()} :
+                                </span>
+                                <div className={styles.attributes}>
+                                  {attr.items.map((item) => {
+                                    return (
+                                      <span key={item.value}>
+                                        <div
+                                          className={styles["attribute-box"]}
+                                        >
+                                          <input
+                                            id={item.id}
+                                            type="checkbox"
+                                            name={item.value}
+                                          />
+                                          <label
+                                            style={{
+                                              backgroundColor: item.value,
+                                              minWidth: "30px",
+                                            }}
+                                            for={item.value}
+                                          >
+                                            {attr.type === "swatch"
+                                              ? " "
+                                              : item.value}{" "}
+                                          </label>
+                                        </div>
+                                      </span>
+                                    );
+                                  })}
+                                </div>
+                              </span>
+                            );
+                          })}
+                        </div>
+                        <Link to={`/product/${product.id}`}>
+                          <div className={styles["card-footer"]}>
+                            <p className={styles["product-name"]}>
+                              {" "}
+                              {product.name}{" "}
+                            </p>
+                            <p className={styles["product-price"]}>
+                              {" "}
+                              {productPrice.currency.symbol}
+                              {productPrice.amount}{" "}
+                            </p>
+                          </div>
+                        </Link>
+                        <div className={styles["add-to-cart-btn"]}>
+                          {" "}
+                          <Cart />{" "}
+                        </div>
+                      </div>
                     </Card>
                   );
                 });
