@@ -15,6 +15,13 @@ import Card from "../../components/card/card";
 import { Link } from "react-router-dom";
 
 import { ReactComponent as Cart } from "../../assets/white-cart.svg";
+import { createStructuredSelector } from "reselect";
+import { selectCartHidden } from "../../redux/cart/cart.selector";
+import {
+  selectCurrencyHidden,
+  selectCurrencyLabel,
+} from "../../redux/currency/currency.selector";
+import { selectCategory } from "../../redux/product/product.selector";
 
 class ListingPage extends React.Component {
   constructor(props) {
@@ -191,11 +198,11 @@ class ListingPage extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  hidden: state.cart.hidden,
-  currencyHidden: state.currency.hidden,
-  category: state.product.category,
-  currencyLabel: state.currency.preferredCurrencyLabel,
+const mapStateToProps = createStructuredSelector({
+  hidden: selectCartHidden,
+  currencyHidden: selectCurrencyHidden,
+  category: selectCategory,
+  currencyLabel: selectCurrencyLabel,
 });
 
 const mapDispatchToProps = (dispatch) => ({

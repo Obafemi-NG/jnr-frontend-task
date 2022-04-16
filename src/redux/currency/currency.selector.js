@@ -11,3 +11,7 @@ export const selectChangeCurrency = createSelector(
   [selectCurrency],
   (currency) => currency.preferredCurrencyLabel
 );
+export const selectCurrencyLabel = createSelector(
+  [selectCurrency],
+  (currency) => currency.preferredCurrencyLabel
+);
