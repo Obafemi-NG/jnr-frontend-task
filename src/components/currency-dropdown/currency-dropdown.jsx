@@ -30,7 +30,7 @@ class CurrencyDropdown extends React.Component {
                   return (
                     <div key={curr.symbol} className={styles.currencies}>
                       <div
-                        onClick={() => ChangeCurrency(curr.label)}
+                        onClick={() => ChangeCurrency(curr.symbol)}
                         className={styles.currency}
                       >
                         <span className={styles.symbol}> {curr.symbol} </span>

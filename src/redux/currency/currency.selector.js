@@ -7,11 +7,11 @@ export const selectCurrencyHidden = createSelector(
   (currency) => currency.hidden
 );
 
-export const selectChangeCurrency = createSelector(
+// export const selectChangeCurrency = createSelector(
+//   [selectCurrency],
+//   (currency) => currency.preferredCurrencyLabel
+// );
+export const selectCurrencySymbol = createSelector(
   [selectCurrency],
-  (currency) => currency.preferredCurrencyLabel
-);
-export const selectCurrencyLabel = createSelector(
-  [selectCurrency],
-  (currency) => currency.preferredCurrencyLabel
+  (currency) => currency.preferredCurrencySymbol
 );

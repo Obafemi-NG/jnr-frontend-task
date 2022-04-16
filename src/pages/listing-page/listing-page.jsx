@@ -19,7 +19,8 @@ import { createStructuredSelector } from "reselect";
 import { selectCartHidden } from "../../redux/cart/cart.selector";
 import {
   selectCurrencyHidden,
-  selectCurrencyLabel,
+  // selectCurrencyLabel,
+  selectCurrencySymbol,
 } from "../../redux/currency/currency.selector";
 import { selectCategory } from "../../redux/product/product.selector";
 
@@ -82,7 +83,7 @@ class ListingPage extends React.Component {
                 return products.map((product) => {
                   const productPrice = product.prices.find(
                     (currency) =>
-                      currency.currency.label === this.props.currencyLabel
+                      currency.currency.symbol === this.props.currencySymbol
                   );
 
                   //I am close to cracking this ProductAttribute thingyyy!.
@@ -202,7 +203,7 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
   currencyHidden: selectCurrencyHidden,
   category: selectCategory,
-  currencyLabel: selectCurrencyLabel,
+  currencySymbol: selectCurrencySymbol,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -58,6 +58,7 @@ a {
 .out-of-stock {
   position: absolute;
   font-weight: 600;
+  z-index: 25;
 }
 
 .product-img {

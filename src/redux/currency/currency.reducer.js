@@ -2,7 +2,7 @@ import { currencyActionType } from "./currency.type";
 
 const INITIAL_STATE = {
   hidden: true,
-  preferredCurrencyLabel: "USD",
+  // preferredCurrencyLabel: "USD",
   preferredCurrencySymbol: "$",
 };
 export const currencyReducer = (state = INITIAL_STATE, action) => {
@@ -15,7 +15,7 @@ export const currencyReducer = (state = INITIAL_STATE, action) => {
     case currencyActionType.CHANGE_CURRENCY:
       return {
         ...state,
-        preferredCurrencyLabel: action.payload,
+        preferredCurrencySymbol: action.payload,
       };
     default:
       return state;

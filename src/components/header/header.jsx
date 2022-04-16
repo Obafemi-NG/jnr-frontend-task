@@ -17,12 +17,16 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as Angledown } from "../../assets/angle-down.svg";
 import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
 import { Link } from "react-router-dom";
-import { selectCurrencyHidden } from "../../redux/currency/currency.selector";
-import { selectChangeCurrency } from "../../redux/currency/currency.selector";
+import {
+  selectCurrencyHidden,
+  // selectCurrencyLabel,
+  selectCurrencySymbol,
+} from "../../redux/currency/currency.selector";
+// import { selectChangeCurrency } from "../../redux/currency/currency.selector";
 
 class Header extends React.Component {
   render() {
-    const { toggleCurrencyDropdown, hidden, currencyLabel, changeCategory } =
+    const { toggleCurrencyDropdown, hidden, currencySymbol, changeCategory } =
       this.props;
     const GET_LINKS = gql`
       {
@@ -63,7 +67,7 @@ class Header extends React.Component {
         </div>
         <div className={styles["navbar-left"]}>
           <div className={styles.icon}>
-            {currencyLabel}
+            {currencySymbol}
             <span
               onClick={toggleCurrencyDropdown}
               className={styles["angle-icon"]}
@@ -87,7 +91,7 @@ class Header extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   hidden: selectCurrencyHidden,
-  currencyLabel: selectChangeCurrency,
+  currencySymbol: selectCurrencySymbol,
 });
 
 const mapDispatchToProps = (dispatch) => ({
