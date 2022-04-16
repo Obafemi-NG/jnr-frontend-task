@@ -1,13 +1,13 @@
 .badge {
   font-size: 10px;
-  height: 12px;
-  width: 12px;
+  height: 13px;
+  width: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: black;
   position: absolute;
-  padding: 2px;
+  padding: 1px;
   border-radius: 50%;
   color: white;
   right: 0;
