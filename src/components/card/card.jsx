@@ -5,8 +5,12 @@ class Card extends React.Component {
   render() {
     const { children, inStock } = this.props;
     return (
-      <div className={styles.card}>
-        <div className={`${inStock ? styles["out-of-stock"] : null} `} />
+      <div
+        className={`${styles.card} ${
+          inStock ? null : styles["card-out-of-stock"]
+        } `}
+      >
+        <div className={`${inStock ? null : styles["out-of-stock"]} `} />
         {children}
       </div>
     );

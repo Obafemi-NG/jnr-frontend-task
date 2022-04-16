@@ -17,22 +17,6 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Cart } from "../../assets/white-cart.svg";
 
 class ListingPage extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     cartProduct: {
-  //       name: "",
-  //       price: "",
-  //       image: null,
-  //       brand: "",
-  //       id: "",
-  //       attributes: {},
-  //     },
-  //     attributeError:
-  //       "Selecting an attribute is compulsory before adding to Cart",
-  //   };
-  // };
-
   render() {
     const PRODUCT_LISTS = gql`
       {
@@ -99,7 +83,7 @@ class ListingPage extends React.Component {
                           />
                           <div className={styles["out-of-stock"]}>
                             {" "}
-                            {product.inStock && "OUT OF STOCK"}{" "}
+                            {!product.inStock && "OUT OF STOCK"}{" "}
                           </div>
                         </div>
                         <div className={styles["attribute-container"]}>
@@ -154,22 +138,9 @@ class ListingPage extends React.Component {
                             </p>
                           </div>
                         </Link>
-                        {!product.inStock && (
+                        {product.inStock && (
                           <div
-                            // onClick={
-                            //   (this.handleAddToCart = () => {
-                            //     this.setState({
-                            //       cartProduct: {
-                            //         name: product.name,
-                            //         price: productPrice.amount,
-                            //         image: product.gallery[0],
-                            //         brand: product.brand,
-                            //         id: product.id,
-                            //       },
-                            //     });
-                            //     addItemToCart(this.state.cartProduct);
-                            //   })
-                            // }
+                            onClick={() => addItemToCart()}
                             className={styles["add-to-cart-btn"]}
                           >
                             <Cart />
@@ -187,7 +158,6 @@ class ListingPage extends React.Component {
     );
   }
 }
-
 const mapStateToProps = (state) => ({
   hidden: state.cart.hidden,
   currencyHidden: state.currency.hidden,
