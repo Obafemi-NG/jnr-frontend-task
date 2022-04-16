@@ -6,6 +6,12 @@ import CartOverlay from "../../components/cart-overlay/cart-overlay";
 import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdown";
 import { connect } from "react-redux";
 import { addItem } from "../../redux/cart/cart.action";
+import { createStructuredSelector } from "reselect";
+import { selectCartHidden } from "../../redux/cart/cart.selector";
+import {
+  selectCurrencyHidden,
+  selectCurrencySymbol,
+} from "../../redux/currency/currency.selector";
 
 class DescriptionPage extends Component {
   constructor(props) {
@@ -13,6 +19,7 @@ class DescriptionPage extends Component {
     this.handleImage = this.handleImage.bind(this);
     this.state = {
       imageIndex: 0,
+      attributes: [],
     };
   }
   handleImage = (index) => {
@@ -20,7 +27,7 @@ class DescriptionPage extends Component {
   };
   render() {
     const { addItemToCart } = this.props;
-    const { hidden, currencyHidden, currencyLabel } = this.props;
+    const { hidden, currencyHidden, currencySymbol } = this.props;
     const currentID = window.location.pathname.split("/")[2];
     const PRODUCT_DETAILS = gql`
       {
@@ -60,11 +67,20 @@ class DescriptionPage extends Component {
             if (loading) return <div> Loading... </div>;
             if (error) return <div> Error Loading Product details. </div>;
             else {
-              console.log(data);
+              // console.log(data);
               const productInfo = data.product;
               const productPrice = productInfo.prices.find(
-                (price) => price.currency.label === currencyLabel
+                (price) => price.currency.symbol === currencySymbol
               );
+              const cartProduct = {
+                name: productInfo.name,
+                brand: productInfo.brand,
+                gallery: productInfo.gallery,
+                id: productInfo.id,
+                amount: productPrice.amount,
+                symbol: productPrice.currency.symbol,
+                attributes: this.state.attributes,
+              };
               return (
                 <div className={styles["description-container"]}>
                   <div className={styles["images-section"]}>
@@ -102,7 +118,19 @@ class DescriptionPage extends Component {
                               {attribute.items.map((item) => {
                                 return (
                                   <span key={item.id}>
-                                    <div className={styles["attribute-box"]}>
+                                    <div
+                                      onClick={
+                                        (this.handleChoice = () => {
+                                          this.setState({
+                                            attributes: {
+                                              ...this.state.attributes,
+                                              [attribute.name]: item.value,
+                                            },
+                                          });
+                                        })
+                                      }
+                                      className={styles["attribute-box"]}
+                                    >
                                       <input
                                         id={item.id}
                                         type="checkbox"
@@ -137,7 +165,14 @@ class DescriptionPage extends Component {
                     </div>
                     <div className={styles["cta-section"]}>
                       <button
-                        onClick={() => addItemToCart(productInfo)}
+                        onClick={
+                          (this.handleAddToCart = () => {
+                            addItemToCart(cartProduct);
+                            this.setState({
+                              attributes: [],
+                            });
+                          })
+                        }
                         className={styles["cta-button"]}
                       >
                         {" "}
@@ -161,10 +196,16 @@ class DescriptionPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  hidden: state.cart.hidden,
-  currencyHidden: state.currency.hidden,
-  currencyLabel: state.currency.preferredCurrencyLabel,
+// const mapStateToProps = (state) => ({
+//   hidden: state.cart.hidden,
+//   currencyHidden: state.currency.hidden,
+//   currencySymbol: state.currency.preferredCurrencySymbol,
+// });
+
+const mapStateToProps = createStructuredSelector({
+  hidden: selectCartHidden,
+  currencyHidden: selectCurrencyHidden,
+  currencySymbol: selectCurrencySymbol,
 });
 
 const mapDispatchToProps = (dispatch) => ({
