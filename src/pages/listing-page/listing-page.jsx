@@ -17,6 +17,13 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Cart } from "../../assets/white-cart.svg";
 
 class ListingPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      attributes: [],
+    };
+  }
+
   render() {
     const PRODUCT_LISTS = gql`
       {
@@ -25,6 +32,7 @@ class ListingPage extends React.Component {
           products {
             id
             name
+            brand
             description
             gallery
             inStock
@@ -71,7 +79,15 @@ class ListingPage extends React.Component {
                   );
 
                   //I am close to cracking this ProductAttribute thingyyy!.
-
+                  const cartProduct = {
+                    name: product.name,
+                    brand: product.brand,
+                    gallery: product.gallery,
+                    id: product.id,
+                    amount: productPrice.amount,
+                    symbol: productPrice.currency.symbol,
+                    attributes: this.state.attributes,
+                  };
                   return (
                     <Card inStock={product.inStock} key={product.id}>
                       <div className={styles["card-overlay"]}>
@@ -99,6 +115,16 @@ class ListingPage extends React.Component {
                                       <span key={item.value}>
                                         <div
                                           className={styles["attribute-box"]}
+                                          onClick={
+                                            (this.handleChoice = () => {
+                                              this.setState({
+                                                attributes: {
+                                                  ...this.state.attributes,
+                                                  [attr.name]: item.value,
+                                                },
+                                              });
+                                            })
+                                          }
                                         >
                                           <input
                                             id={item.value}
@@ -140,7 +166,14 @@ class ListingPage extends React.Component {
                         </Link>
                         {product.inStock && (
                           <div
-                            onClick={() => addItemToCart()}
+                            onClick={
+                              (this.handleAddToCart = () => {
+                                addItemToCart(cartProduct);
+                                this.setState({
+                                  attributes: [],
+                                });
+                              })
+                            }
                             className={styles["add-to-cart-btn"]}
                           >
                             <Cart />

@@ -1,6 +1,7 @@
 import { productActionType } from "./product.type";
 const INITIAL_STATE = {
   category: "all",
+  attribute: "#FFFFFF" || "512GB" || 40,
 };
 
 const productReducer = (state = INITIAL_STATE, action) => {
@@ -9,6 +10,11 @@ const productReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         category: action.payload,
+      };
+    case productActionType.CHANGE_ATTRIBUTE:
+      return {
+        ...state,
+        attribute: action.payload,
       };
     default:
       return state;
