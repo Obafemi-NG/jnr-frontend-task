@@ -1,4 +1,3 @@
 export const productActionType = {
   CHANGE_CATEGORY: "CHANGE_CATEGORY",
-  CHANGE_ATTRIBUTE: "CHANGE_ATTRIBUTE",
 };
