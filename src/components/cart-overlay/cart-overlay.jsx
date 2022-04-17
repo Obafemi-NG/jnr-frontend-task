@@ -59,24 +59,6 @@ class CartOverlay extends React.Component {
             </div>
             {cartItems.map((cartItem) => {
               const maxIndex = cartItem.gallery.length - 1;
-              // const attribute = Object.keys(cartItem.attributes).forEach(
-              //   (key, index) => console.log(cartItem.attributes[key])
-              // );
-              // const attributeKey = Object.keys(cartItem.attributes).forEach(
-              //   (key) => console.log(key)
-              // );
-
-              // const attribute = Object.values(cartItem.attributes).forEach(
-              //   (value) => console.log(value)
-              // );
-              // const attributeKey = Object.keys(cartItem.attributes).forEach(
-              //   (key) => {
-              //     return key;
-              //   }
-              // );
-
-              // console.log(attributeKey);
-              // console.log(attribute);
 
               return (
                 <div key={cartItem.id} className={styles["cart-item"]}>
@@ -87,12 +69,25 @@ class CartOverlay extends React.Component {
                       {`${cartItem.symbol}${cartItem.amount} `}{" "}
                     </h4>
                     <div className={styles.attributes}>
-                      {Object.keys(cartItem.attributes).map((key) => (
-                        <div key={key} className={styles.attribute}>
-                          {key === "Color" ? null : cartItem.attributes[key]}
-                        </div>
-                      ))}
-                      {/* <div className={styles.attribute}>Femi</div> */}
+                      {Object.keys(cartItem.attributes).map((key) => {
+                        return key === "Color" ? (
+                          <div
+                            key={key}
+                            style={{
+                              backgroundColor: cartItem.attributes[key],
+                              minWidth: "20px",
+                              border: "none",
+                            }}
+                            className={styles.attribute}
+                          >
+                            {" "}
+                          </div>
+                        ) : (
+                          <div key={key} className={styles.attribute}>
+                            {key === "Color" ? null : cartItem.attributes[key]}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                   <div className={styles["middle-section"]}>

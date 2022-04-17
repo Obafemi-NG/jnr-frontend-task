@@ -25,7 +25,7 @@
 .attributes {
   display: flex;
   margin-top: 25px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .attribute {
   font-size: 12px;
