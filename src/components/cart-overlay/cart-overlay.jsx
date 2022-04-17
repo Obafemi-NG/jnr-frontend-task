@@ -2,11 +2,14 @@ import React from "react";
 import Modal from "../cart-modal/cart-modal";
 import styles from "./cart-overlay.module.css";
 import { connect } from "react-redux";
-import { toggleCart } from "../../redux/cart/cart.action";
+import { addItem, removeItem, toggleCart } from "../../redux/cart/cart.action";
 
 import { withRouter } from "../../withRouter";
 import { createStructuredSelector } from "reselect";
-import { selectCartItems } from "../../redux/cart/cart.selector";
+import {
+  selectCartItemCount,
+  selectCartItems,
+} from "../../redux/cart/cart.selector";
 
 class CartOverlay extends React.Component {
   constructor(props) {
@@ -31,33 +34,72 @@ class CartOverlay extends React.Component {
   };
 
   render() {
-    const { cartItems } = this.props;
+    const { cartItems, addItem, removeItem, itemCount } = this.props;
     return (
       <Modal>
-        {cartItems.length ? (
+        {itemCount >= 1 ? (
           <div className={styles["cart-items-container"]}>
             <div className={styles.title}>
               {" "}
               <span className={styles.headline}> My Bag, </span>{" "}
               <span>
                 {" "}
-                {cartItems.length} {cartItems.length > 1 ? "Items" : "Item"}{" "}
+                {itemCount} {itemCount > 1 ? "Items" : "Item"}{" "}
               </span>{" "}
             </div>
             {cartItems.map((cartItem) => {
               return (
-                <div className={styles["cart-item"]}>
+                <div key={cartItem.id} className={styles["cart-item"]}>
                   <div className={styles["left-section"]}>
                     <p> {cartItem.name} </p>
                     <h4 className={styles.price}>
                       {" "}
                       {`${cartItem.symbol}${cartItem.amount} `}{" "}
                     </h4>
+                    {/* {cartItem.attribute.map((attr) => {
+                      return (
+                        <div className={styles.attributes}>
+                          {attr.Capacity ? (
+                            <div className={styles.attribute}>
+                              {" "}
+                              {attr.Capacity}{" "}
+                            </div>
+                          ) : null}
+                          {attr.Color ? (
+                            <div
+                              style={{
+                                backgroundColor: attr.Color,
+                                width: "20px",
+                              }}
+                              className={styles.attribute}
+                            >
+                              {" "}
+                            </div>
+                          ) : null}
+                          {attr.Size ? (
+                            <div className={styles.attribute}>
+                              {" "}
+                              {attr.Size}{" "}
+                            </div>
+                          ) : null}
+                        </div>
+                      );
+                    })} */}
                   </div>
                   <div className={styles["middle-section"]}>
-                    <div className={styles.increase}>+</div>
+                    <div
+                      onClick={() => addItem(cartItem)}
+                      className={styles.increase}
+                    >
+                      +
+                    </div>
                     <div className={styles.quantity}>{cartItem.quantity}</div>
-                    <div className={styles.decrease}>-</div>
+                    <div
+                      onClick={() => removeItem(cartItem)}
+                      className={styles.decrease}
+                    >
+                      -
+                    </div>
                   </div>
                   <div className={styles["right-section"]}>
                     <img
@@ -94,10 +136,13 @@ class CartOverlay extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
+  itemCount: selectCartItemCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCart: () => dispatch(toggleCart()),
+  addItem: (item) => dispatch(addItem(item)),
+  removeItem: (item) => dispatch(removeItem(item)),
 });
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(CartOverlay)
