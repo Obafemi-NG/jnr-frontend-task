@@ -15,7 +15,7 @@
   min-height: 100px;
 }
 .left-section {
-  width: 55%;
+  width: 80%;
   padding-right: 20px;
 }
 .price {
@@ -60,16 +60,42 @@
   cursor: pointer;
 }
 .right-section {
-  margin-left: 5px;
+  padding-left: 5px;
+  width: 80%;
   display: flex;
   align-items: center;
-  background-color: gray;
 }
 .cart-image {
-  height: 100px;
-  width: 100px;
+  height: 85px;
+  width: 85px;
   object-fit: fill;
 }
+
+.angle-right {
+  margin-left: 2px;
+}
+.angle-left {
+  margin-right: 2px;
+}
+
+.angle-right,
+.angle-left {
+  width: 10px;
+  height: 10px;
+  padding: 2px;
+}
+
+.angle-right:hover {
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: rgba(211, 211, 211, 0.33);
+}
+.angle-left:hover {
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: rgba(211, 211, 211, 0.33);
+}
+
 .empty-cart-message {
   margin: auto;
 }

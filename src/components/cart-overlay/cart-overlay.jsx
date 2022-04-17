@@ -4,6 +4,10 @@ import styles from "./cart-overlay.module.css";
 import { connect } from "react-redux";
 import { addItem, removeItem, toggleCart } from "../../redux/cart/cart.action";
 
+import { ReactComponent as AngleLeft } from "../../assets/angle-left.svg";
+
+import { ReactComponent as AngleRight } from "../../assets/angle-right.svg";
+
 import { withRouter } from "../../withRouter";
 import { createStructuredSelector } from "reselect";
 import {
@@ -102,12 +106,31 @@ class CartOverlay extends React.Component {
                     </div>
                   </div>
                   <div className={styles["right-section"]}>
-                    <img
-                      className={styles["cart-image"]}
-                      src={cartItem.gallery[this.state.imageIndex]}
-                      alt={cartItem.name}
-                    />
+                    <span className={styles["angle-left"]}>
+                      <AngleLeft />
+                    </span>
+                    <div>
+                      <img
+                        className={styles["cart-image"]}
+                        src={cartItem.gallery[this.state.imageIndex]}
+                        alt={cartItem.name}
+                      />
+                    </div>
+                    {/* <div className={styles.angles}> */}
+
+                    <span className={styles["angle-right"]}>
+                      <AngleRight />
+                    </span>
+                    {/* </div> */}
                   </div>
+                  {/* <div className={styles.angles}>
+                    <span className={styles["angle-left"]}>
+                      <AngleLeft />
+                    </span>
+                    <span className={styles["angle-right"]}>
+                      <AngleRight />
+                    </span>
+                  </div> */}
                 </div>
               );
             })}

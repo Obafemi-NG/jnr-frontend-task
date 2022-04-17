@@ -196,12 +196,6 @@ class DescriptionPage extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   hidden: state.cart.hidden,
-//   currencyHidden: state.currency.hidden,
-//   currencySymbol: state.currency.preferredCurrencySymbol,
-// });
-
 const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
   currencyHidden: selectCurrencyHidden,
