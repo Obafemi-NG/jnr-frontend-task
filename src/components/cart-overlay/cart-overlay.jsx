@@ -22,6 +22,8 @@ class CartOverlay extends React.Component {
       imageIndex: 0,
     };
     this.handleViewBag = this.handleViewBag.bind(this);
+    this.handleViewNextImage = this.handleViewNextImage.bind(this);
+    this.handleViewPrevImage = this.handleViewPrevImage.bind(this);
   }
 
   handleViewBag = () => {
@@ -30,11 +32,15 @@ class CartOverlay extends React.Component {
   };
 
   handleViewNextImage = () => {
-    this.setState((prevState) => prevState.imageIndex + 1);
+    this.setState((prevState) => {
+      return { imageIndex: prevState.imageIndex + 1 };
+    });
   };
 
   handleViewPrevImage = () => {
-    this.setState((prevState) => prevState.imageIndex - 1);
+    this.setState((prevState) => {
+      return { imageIndex: prevState.imageIndex - 1 };
+    });
   };
 
   render() {
@@ -52,6 +58,26 @@ class CartOverlay extends React.Component {
               </span>{" "}
             </div>
             {cartItems.map((cartItem) => {
+              const maxIndex = cartItem.gallery.length - 1;
+              // const attribute = Object.keys(cartItem.attributes).forEach(
+              //   (key, index) => console.log(cartItem.attributes[key])
+              // );
+              // const attributeKey = Object.keys(cartItem.attributes).forEach(
+              //   (key) => console.log(key)
+              // );
+
+              // const attribute = Object.values(cartItem.attributes).forEach(
+              //   (value) => console.log(value)
+              // );
+              // const attributeKey = Object.keys(cartItem.attributes).forEach(
+              //   (key) => {
+              //     return key;
+              //   }
+              // );
+
+              // console.log(attributeKey);
+              // console.log(attribute);
+
               return (
                 <div key={cartItem.id} className={styles["cart-item"]}>
                   <div className={styles["left-section"]}>
@@ -60,35 +86,14 @@ class CartOverlay extends React.Component {
                       {" "}
                       {`${cartItem.symbol}${cartItem.amount} `}{" "}
                     </h4>
-                    {/* {cartItem.attribute.map((attr) => {
-                      return (
-                        <div className={styles.attributes}>
-                          {attr.Capacity ? (
-                            <div className={styles.attribute}>
-                              {" "}
-                              {attr.Capacity}{" "}
-                            </div>
-                          ) : null}
-                          {attr.Color ? (
-                            <div
-                              style={{
-                                backgroundColor: attr.Color,
-                                width: "20px",
-                              }}
-                              className={styles.attribute}
-                            >
-                              {" "}
-                            </div>
-                          ) : null}
-                          {attr.Size ? (
-                            <div className={styles.attribute}>
-                              {" "}
-                              {attr.Size}{" "}
-                            </div>
-                          ) : null}
+                    <div className={styles.attributes}>
+                      {Object.keys(cartItem.attributes).map((key) => (
+                        <div key={key} className={styles.attribute}>
+                          {key === "Color" ? null : cartItem.attributes[key]}
                         </div>
-                      );
-                    })} */}
+                      ))}
+                      {/* <div className={styles.attribute}>Femi</div> */}
+                    </div>
                   </div>
                   <div className={styles["middle-section"]}>
                     <div
@@ -106,8 +111,11 @@ class CartOverlay extends React.Component {
                     </div>
                   </div>
                   <div className={styles["right-section"]}>
-                    <span className={styles["angle-left"]}>
-                      <AngleLeft />
+                    <span
+                      onClick={this.handleViewPrevImage}
+                      className={styles["angle-left"]}
+                    >
+                      {this.state.imageIndex === 0 ? null : <AngleLeft />}
                     </span>
                     <div>
                       <img
@@ -116,21 +124,16 @@ class CartOverlay extends React.Component {
                         alt={cartItem.name}
                       />
                     </div>
-                    {/* <div className={styles.angles}> */}
 
-                    <span className={styles["angle-right"]}>
-                      <AngleRight />
+                    <span
+                      onClick={this.handleViewNextImage}
+                      className={styles["angle-right"]}
+                    >
+                      {maxIndex === this.state.imageIndex ? null : (
+                        <AngleRight />
+                      )}
                     </span>
-                    {/* </div> */}
                   </div>
-                  {/* <div className={styles.angles}>
-                    <span className={styles["angle-left"]}>
-                      <AngleLeft />
-                    </span>
-                    <span className={styles["angle-right"]}>
-                      <AngleRight />
-                    </span>
-                  </div> */}
                 </div>
               );
             })}

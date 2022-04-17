@@ -24,10 +24,20 @@
 }
 .attributes {
   display: flex;
+  margin-top: 25px;
+  justify-content: space-between;
 }
 .attribute {
+  font-size: 12px;
   height: 20px;
+  border: 1px solid black;
   width: fit-content;
+  background-color: black;
+  color: white;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .middle-section {
