@@ -19,7 +19,7 @@ class DescriptionPage extends Component {
     this.handleImage = this.handleImage.bind(this);
     this.state = {
       imageIndex: 0,
-      attributes: [],
+      attributes: {},
     };
   }
   handleImage = (index) => {
