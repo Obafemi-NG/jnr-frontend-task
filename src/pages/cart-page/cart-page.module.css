@@ -50,7 +50,6 @@
 }
 
 .middle-section {
-  /* background-color: red; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -88,7 +87,6 @@
   border: 1px solid black;
 }
 .right-section {
-  /* background-color: rebeccapurple; */
   width: 170px;
   margin-left: auto;
   display: flex;
@@ -123,10 +121,9 @@
 .total-section {
   display: flex;
   width: 100%;
-  justify-content: end;
+  justify-content: flex-end;
   margin-top: auto;
   padding-top: 30px;
-  /* background-color: rebeccapurple; */
 }
 .total-amount {
   padding-left: 50px;
@@ -138,11 +135,12 @@
   display: flex;
   margin-top: auto;
   padding-top: 50px;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .checkout-btn {
   background-color: #5ece7b;
   border: 1px solid #5ece7b;
   color: white;
   padding: 10px;
+  margin-bottom: 10px;
 }
