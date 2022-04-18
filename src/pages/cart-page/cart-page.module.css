@@ -95,8 +95,8 @@
   align-items: center;
   justify-content: center;
 }
-.angle-left,
-.angle-right {
+.angle-left-container,
+.angle-right-container {
   width: 10px;
   height: 10px;
 }
@@ -109,19 +109,40 @@
 
 .angle-left:hover {
   cursor: pointer;
-  background-color: lightgray;
-  border-radius: 5px;
-  padding: 3px;
 }
 .angle-right:hover {
   cursor: pointer;
-  background-color: lightgray;
-  border-radius: 1px;
-  padding: 1px;
 }
 
 .cart-image {
   height: 120px;
   object-fit: fill;
   width: 120px;
+}
+
+.total-section {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  margin-top: auto;
+  padding-top: 30px;
+  /* background-color: rebeccapurple; */
+}
+.total-amount {
+  padding-left: 50px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.cta {
+  display: flex;
+  margin-top: auto;
+  padding-top: 50px;
+  justify-content: end;
+}
+.checkout-btn {
+  background-color: #5ece7b;
+  border: 1px solid #5ece7b;
+  color: white;
+  padding: 10px;
 }

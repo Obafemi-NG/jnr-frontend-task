@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import styles from "./cart-page.module.css";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCartItems } from "../../redux/cart/cart.selector";
+import {
+  selectCartItems,
+  selectCartTotalPrice,
+} from "../../redux/cart/cart.selector";
 import { selectCurrencySymbol } from "../../redux/currency/currency.selector";
 
 import { ReactComponent as AngleRight } from "../../assets/angle-right.svg";
@@ -13,11 +16,62 @@ class CartPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cartId: "",
       imageIndex: 0,
     };
   }
+
+  handleNextImage = () => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        imageIndex: prevState.imageIndex + 1,
+      };
+    });
+  };
+  handlePrevImage = () => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        imageIndex: prevState.imageIndex - 1,
+      };
+    });
+  };
+
+  // handleId = (id) => {
+  //   this.setState((prevState) => {
+  //     return { ...prevState, cartId: id };
+  //   });
+  // };
+  // handleNextImage = (id) => {
+  //   this.handleId(id);
+  //   if (this.state.cartId === id) {
+  //     return this.setState((prevState) => {
+  //       return {
+  //         ...prevState,
+  //         imageIndex: prevState.imageIndex + 1,
+  //       };
+  //     });
+  //   } else {
+  //     return {
+  //       ...this.state,
+  //       imageIndex: 0,
+  //     };
+  //   }
+  // };
+  // handlePrevImage = () => {
+  //   this.setState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       imageIndex: prevState.imageIndex - 1,
+  //     };
+  //   });
+  // };
+
   render() {
-    const { cartItems, currencySymbol, addItem, removeItem } = this.props;
+    const { cartItems, currencySymbol, addItem, removeItem, totalAmount } =
+      this.props;
+    console.log(this.state.cartId);
 
     return (
       <div className={styles["cart-page"]}>
@@ -26,7 +80,7 @@ class CartPage extends Component {
           {cartItems.map((cartItem) => {
             const galleryCount = cartItem.gallery.length - 1;
             return (
-              <div className={styles["cart-item"]}>
+              <div key={cartItem.id} className={styles["cart-item"]}>
                 <div className={styles["left-section"]}>
                   <h4 className={styles.brand}> {cartItem.brand} </h4>
                   <p className={styles.name}> {cartItem.name} </p>
@@ -39,6 +93,7 @@ class CartPage extends Component {
                     {Object.keys(cartItem.attributes).map((key) => {
                       return key === "Color" ? (
                         <div
+                          key={key}
                           style={{
                             backgroundColor: cartItem.attributes[key],
                             minWidth: "20px",
@@ -75,8 +130,15 @@ class CartPage extends Component {
                   </div>
                 </div>
                 <div className={styles["right-section"]}>
-                  <div className={styles["angle-left"]}>
-                    {!(this.state.imageIndex === 0) && <AngleLeft />}
+                  <div className={styles["angle-left-container"]}>
+                    {!(this.state.imageIndex === 0) && (
+                      <div
+                        onClick={this.handlePrevImage}
+                        className={styles["angle-left"]}
+                      >
+                        <AngleLeft />{" "}
+                      </div>
+                    )}
                   </div>
                   <div className={styles["image-container"]}>
                     <img
@@ -85,15 +147,34 @@ class CartPage extends Component {
                       alt={cartItem.name}
                     />
                   </div>
-                  <div className={styles["angle-right"]}>
+                  <div className={styles["angle-right-container"]}>
                     {!(this.state.imageIndex === galleryCount) && (
-                      <AngleRight />
+                      <div
+                        onClick={() => this.handleNextImage(cartItem.id)}
+                        className={styles["angle-right"]}
+                      >
+                        {" "}
+                        <AngleRight />
+                      </div>
                     )}
                   </div>
                 </div>
               </div>
             );
           })}
+        </div>
+        <div className={styles["total-section"]}>
+          <h4 className={styles.total}>TOTAL</h4>
+          <p className={styles["total-amount"]}>
+            {" "}
+            {currencySymbol}
+            {Math.ceil(totalAmount)}{" "}
+          </p>
+        </div>
+        <div className={styles.cta}>
+          <button className={styles["checkout-btn"]}>
+            PROCEED TO CHECKOUT
+          </button>
         </div>
       </div>
     );
@@ -103,6 +184,7 @@ class CartPage extends Component {
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   currencySymbol: selectCurrencySymbol,
+  totalAmount: selectCartTotalPrice,
 });
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
