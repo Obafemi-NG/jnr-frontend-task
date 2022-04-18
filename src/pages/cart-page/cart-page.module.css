@@ -1,6 +1,127 @@
 .cart-page {
   padding: 100px 8px;
-  margin: 0px 30px;
+  margin: 0px 180px 0px 30px;
   height: 100vh;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.cart-items {
+  margin-top: 40px;
+}
+.cart-item {
+  border-top: 1px solid lightgray;
+  padding-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+}
+.left-section {
+  width: 80%;
+}
+.brand {
+  margin-bottom: 5px;
+}
+.name {
+  margin-bottom: 20px;
+}
+.amount {
+  font-weight: 500;
+}
+
+.attributes {
+  display: flex;
+  margin-top: 15px;
+}
+.attribute {
+  font-size: 12px;
+  height: 20px;
+  border: 1px solid black;
+  width: fit-content;
+  background-color: black;
+  color: white;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.middle-section {
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 5%;
+}
+.increase {
+  font-size: 20px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid darkgray;
+  display: flex;
+  align-items: center;
+  color: darkgray;
+  justify-content: center;
+}
+.decrease {
+  font-size: 20px;
+  color: darkgray;
+  width: 22px;
+  height: 22px;
+  border: 1px solid darkgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.increase:hover {
+  cursor: pointer;
+  color: black;
+  border: 1px solid black;
+}
+.decrease:hover {
+  cursor: pointer;
+  color: black;
+  border: 1px solid black;
+}
+.right-section {
   /* background-color: rebeccapurple; */
+  width: 170px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.angle-left,
+.angle-right {
+  width: 10px;
+  height: 10px;
+}
+.angle-left {
+  margin-right: 5px;
+}
+.angle-right {
+  margin-left: 5px;
+}
+
+.angle-left:hover {
+  cursor: pointer;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 3px;
+}
+.angle-right:hover {
+  cursor: pointer;
+  background-color: lightgray;
+  border-radius: 1px;
+  padding: 1px;
+}
+
+.cart-image {
+  height: 120px;
+  object-fit: fill;
+  width: 120px;
 }

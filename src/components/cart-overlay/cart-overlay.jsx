@@ -13,7 +13,9 @@ import { createStructuredSelector } from "reselect";
 import {
   selectCartItemCount,
   selectCartItems,
+  selectCartTotalPrice,
 } from "../../redux/cart/cart.selector";
+import { selectCurrencySymbol } from "../../redux/currency/currency.selector";
 
 class CartOverlay extends React.Component {
   constructor(props) {
@@ -44,7 +46,14 @@ class CartOverlay extends React.Component {
   };
 
   render() {
-    const { cartItems, addItem, removeItem, itemCount } = this.props;
+    const {
+      cartItems,
+      addItem,
+      removeItem,
+      itemCount,
+      totalPrice,
+      currencySymbol,
+    } = this.props;
     return (
       <Modal>
         {itemCount >= 1 ? (
@@ -139,6 +148,14 @@ class CartOverlay extends React.Component {
             Your Cart is Empty!{" "}
           </div>
         )}
+        <div className={styles.total}>
+          <h5 className={styles["total-title"]}> Total </h5>
+          <p className={styles.amount}>
+            {" "}
+            {currencySymbol}
+            {Math.ceil(totalPrice)}{" "}
+          </p>
+        </div>
         <div className={styles.cta}>
           <button
             onClick={this.handleViewBag}
@@ -158,6 +175,8 @@ class CartOverlay extends React.Component {
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   itemCount: selectCartItemCount,
+  totalPrice: selectCartTotalPrice,
+  currencySymbol: selectCurrencySymbol,
 });
 
 const mapDispatchToProps = (dispatch) => ({
