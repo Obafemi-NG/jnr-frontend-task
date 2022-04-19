@@ -167,6 +167,13 @@ class DescriptionPage extends Component {
                       <button
                         onClick={
                           (this.handleAddToCart = () => {
+                            if (!(productInfo.attributes.length === 0)) {
+                              if (
+                                Object.keys(this.state.attributes).length === 0
+                              ) {
+                                return;
+                              }
+                            }
                             addItemToCart(cartProduct);
                             this.setState({
                               attributes: [],

@@ -27,7 +27,6 @@ class ListingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isChecked: true,
       attributes: {},
     };
   }
@@ -186,7 +185,6 @@ class ListingPage extends React.Component {
                                     return;
                                   }
                                 }
-
                                 addItemToCart(cartProduct);
                                 this.setState({
                                   attributes: {},

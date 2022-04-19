@@ -178,7 +178,7 @@ class CartPage extends Component {
             <p className={styles["total-amount"]}>
               {" "}
               {currencySymbol}
-              {Math.ceil(totalAmount)}{" "}
+              {totalAmount.toFixed(2)}{" "}
             </p>
           </div>
         ) : (

@@ -112,7 +112,7 @@ class CartOverlay extends React.Component {
               <p className={styles.amount}>
                 {" "}
                 {currencySymbol}
-                {Math.ceil(totalPrice)}{" "}
+                {totalPrice.toFixed(2)}{" "}
               </p>
             </div>
           </div>

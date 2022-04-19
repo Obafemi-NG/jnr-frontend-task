@@ -43,13 +43,13 @@ class Header extends React.Component {
                 <div className={styles["link-container"]}>
                   {data.categories.map((category) => {
                     return (
-                      <nav>
+                      <nav key={category.name}>
                         <ul>
                           <li className={styles["category-link"]}>
                             <NavLink
+                              key={category.name}
                               to={`${category.name}`}
                               onClick={() => changeCategory(category.name)}
-                              key={category.name}
                               className={({ isActive }) =>
                                 isActive ? styles.active : ""
                               }
