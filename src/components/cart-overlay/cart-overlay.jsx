@@ -4,10 +4,6 @@ import styles from "./cart-overlay.module.css";
 import { connect } from "react-redux";
 import { addItem, removeItem, toggleCart } from "../../redux/cart/cart.action";
 
-import { ReactComponent as AngleLeft } from "../../assets/angle-left.svg";
-
-import { ReactComponent as AngleRight } from "../../assets/angle-right.svg";
-
 import { withRouter } from "../../withRouter";
 import { createStructuredSelector } from "reselect";
 import {
@@ -24,25 +20,11 @@ class CartOverlay extends React.Component {
       imageIndex: 0,
     };
     this.handleViewBag = this.handleViewBag.bind(this);
-    this.handleViewNextImage = this.handleViewNextImage.bind(this);
-    this.handleViewPrevImage = this.handleViewPrevImage.bind(this);
   }
 
   handleViewBag = () => {
     this.props.navigate("/cart");
     this.props.toggleCart();
-  };
-
-  handleViewNextImage = () => {
-    this.setState((prevState) => {
-      return { imageIndex: prevState.imageIndex + 1 };
-    });
-  };
-
-  handleViewPrevImage = () => {
-    this.setState((prevState) => {
-      return { imageIndex: prevState.imageIndex - 1 };
-    });
   };
 
   render() {
@@ -67,8 +49,6 @@ class CartOverlay extends React.Component {
               </span>{" "}
             </div>
             {cartItems.map((cartItem) => {
-              const maxIndex = cartItem.gallery.length - 1;
-
               return (
                 <div key={cartItem.id} className={styles["cart-item"]}>
                   <div className={styles["left-section"]}>
@@ -115,28 +95,13 @@ class CartOverlay extends React.Component {
                     </div>
                   </div>
                   <div className={styles["right-section"]}>
-                    <span
-                      onClick={this.handleViewPrevImage}
-                      className={styles["angle-left"]}
-                    >
-                      {this.state.imageIndex === 0 ? null : <AngleLeft />}
-                    </span>
-                    <div>
+                    <div className={styles["image-container"]}>
                       <img
                         className={styles["cart-image"]}
                         src={cartItem.gallery[this.state.imageIndex]}
                         alt={cartItem.name}
                       />
                     </div>
-
-                    <span
-                      onClick={this.handleViewNextImage}
-                      className={styles["angle-right"]}
-                    >
-                      {maxIndex === this.state.imageIndex ? null : (
-                        <AngleRight />
-                      )}
-                    </span>
                   </div>
                 </div>
               );
