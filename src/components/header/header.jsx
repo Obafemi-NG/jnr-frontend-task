@@ -16,13 +16,11 @@ import CartIcon from "../cart-icon/cart-icon";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as Angledown } from "../../assets/angle-down.svg";
 import { ReactComponent as Angleup } from "../../assets/angle-up.svg";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   selectCurrencyHidden,
-  // selectCurrencyLabel,
   selectCurrencySymbol,
 } from "../../redux/currency/currency.selector";
-// import { selectChangeCurrency } from "../../redux/currency/currency.selector";
 
 class Header extends React.Component {
   render() {
@@ -45,14 +43,22 @@ class Header extends React.Component {
                 <div className={styles["link-container"]}>
                   {data.categories.map((category) => {
                     return (
-                      <Link
-                        to={`${category.name}`}
-                        onClick={() => changeCategory(category.name)}
-                        key={category.name}
-                        className={styles["category-link"]}
-                      >
-                        {category.name.toUpperCase()}
-                      </Link>
+                      <nav>
+                        <ul>
+                          <li className={styles["category-link"]}>
+                            <NavLink
+                              to={`${category.name}`}
+                              onClick={() => changeCategory(category.name)}
+                              key={category.name}
+                              className={({ isActive }) =>
+                                isActive ? styles.active : ""
+                              }
+                            >
+                              {category.name.toUpperCase()}
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </nav>
                     );
                   })}
                 </div>

@@ -16,7 +16,7 @@ class CartPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartId: "",
+      // cartId: "",
       imageIndex: 0,
     };
   }
@@ -150,7 +150,7 @@ class CartPage extends Component {
                   <div className={styles["angle-right-container"]}>
                     {!(this.state.imageIndex === galleryCount) && (
                       <div
-                        onClick={() => this.handleNextImage(cartItem.id)}
+                        onClick={this.handleNextImage}
                         className={styles["angle-right"]}
                       >
                         {" "}
