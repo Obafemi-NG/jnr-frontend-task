@@ -30,9 +30,11 @@
 }
 .brand {
   margin-bottom: 5px;
+  font-weight: 500;
 }
 .name {
   margin-bottom: 20px;
+  font-weight: 200;
 }
 .amount {
   font-weight: 500;

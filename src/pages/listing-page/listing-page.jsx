@@ -19,7 +19,6 @@ import { createStructuredSelector } from "reselect";
 import { selectCartHidden } from "../../redux/cart/cart.selector";
 import {
   selectCurrencyHidden,
-  // selectCurrencyLabel,
   selectCurrencySymbol,
 } from "../../redux/currency/currency.selector";
 import { selectCategory } from "../../redux/product/product.selector";
@@ -28,6 +27,7 @@ class ListingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // isChecked: true,
       attributes: {},
     };
   }
@@ -100,11 +100,13 @@ class ListingPage extends React.Component {
                     <Card inStock={product.inStock} key={product.id}>
                       <div className={styles["card-overlay"]}>
                         <div className={styles["img-container"]}>
-                          <img
-                            className={styles["product-img"]}
-                            src={product.gallery[0]}
-                            alt={product.name}
-                          />
+                          <Link to={`/product/${product.id}`}>
+                            <img
+                              className={styles["product-img"]}
+                              src={product.gallery[0]}
+                              alt={product.name}
+                            />
+                          </Link>
                           <div className={styles["out-of-stock"]}>
                             {" "}
                             {!product.inStock && "OUT OF STOCK"}{" "}
@@ -176,9 +178,18 @@ class ListingPage extends React.Component {
                           <div
                             onClick={
                               (this.handleAddToCart = () => {
+                                if (!(product.attributes.length === 0)) {
+                                  if (
+                                    Object.keys(this.state.attributes)
+                                      .length === 0
+                                  ) {
+                                    return;
+                                  }
+                                }
+
                                 addItemToCart(cartProduct);
                                 this.setState({
-                                  attributes: [],
+                                  attributes: {},
                                 });
                               })
                             }
