@@ -141,6 +141,15 @@ class CartOverlay extends React.Component {
                 </div>
               );
             })}
+
+            <div className={styles.total}>
+              <h5 className={styles["total-title"]}> Total </h5>
+              <p className={styles.amount}>
+                {" "}
+                {currencySymbol}
+                {Math.ceil(totalPrice)}{" "}
+              </p>
+            </div>
           </div>
         ) : (
           <div className={styles["empty-cart-message"]}>
@@ -148,14 +157,6 @@ class CartOverlay extends React.Component {
             Your Cart is Empty!{" "}
           </div>
         )}
-        <div className={styles.total}>
-          <h5 className={styles["total-title"]}> Total </h5>
-          <p className={styles.amount}>
-            {" "}
-            {currencySymbol}
-            {Math.ceil(totalPrice)}{" "}
-          </p>
-        </div>
         <div className={styles.cta}>
           <button
             onClick={this.handleViewBag}
