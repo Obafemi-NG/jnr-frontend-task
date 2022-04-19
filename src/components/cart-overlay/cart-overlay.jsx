@@ -129,7 +129,10 @@ class CartOverlay extends React.Component {
           >
             VIEW BAG
           </button>
-          <button className={`${styles.btn} ${styles.checkout}`}>
+          <button
+            disabled={true}
+            className={`${styles.btn} ${styles.checkout}`}
+          >
             CHECK OUT
           </button>
         </div>

@@ -12,6 +12,13 @@
 .cart-items {
   margin-top: 40px;
 }
+.empty-message {
+  display: flex;
+  align-items: center;
+  height: 50vh;
+  justify-content: center;
+  margin: auto;
+}
 .cart-item {
   border-top: 1px solid lightgray;
   padding-top: 20px;
@@ -143,4 +150,7 @@
   color: white;
   padding: 10px;
   margin-bottom: 10px;
+}
+.checkout-btn:disabled {
+  cursor: not-allowed;
 }

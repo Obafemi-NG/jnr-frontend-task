@@ -72,10 +72,15 @@
 }
 .right-section {
   padding-left: 5px;
-  width: 80%;
+  width: 60%;
   display: flex;
   align-items: center;
 }
+
+.image-container {
+  margin-left: auto;
+}
+
 .cart-image {
   height: 85px;
   width: 85px;
@@ -150,7 +155,9 @@
   border: 1px solid #5ece7b;
   color: white;
 }
-.view-bag,
-.checkout:hover {
+.checkout:disabled {
+  cursor: not-allowed;
+}
+.view-bag:hover {
   cursor: pointer;
 }
