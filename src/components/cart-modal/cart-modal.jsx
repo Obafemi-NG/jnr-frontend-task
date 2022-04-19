@@ -8,8 +8,8 @@ import { toggleCart } from "../../redux/cart/cart.action";
 
 import styles from "./cart-modal.module.css";
 
-const Backdrop = ({ onclick }) => {
-  return <div className={styles.backdrop} onClick={onclick} />;
+const Backdrop = ({ onclose }) => {
+  return <div className={styles.backdrop} onClick={onclose} />;
 };
 
 const ModalOverlay = (props) => {
@@ -28,7 +28,7 @@ class Modal extends React.Component {
     return (
       <Fragment>
         {ReactDOM.createPortal(
-          <Backdrop onclick={toggleCart} />,
+          <Backdrop onclose={toggleCart} />,
           overlayElement
         )}
         {ReactDOM.createPortal(
