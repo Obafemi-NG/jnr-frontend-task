@@ -21,45 +21,13 @@ class CartPage extends Component {
     };
   }
 
-  // handleNextImage = () => {
-  //   this.setState((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       imageIndex: prevState.imageIndex + 1,
-  //     };
-  //   });
-  // };
-  // handlePrevImage = () => {
-  //   this.setState((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       imageIndex: prevState.imageIndex - 1,
-  //     };
-  //   });
-  // };
-
-  // handleId = (id) => {
-  //   this.setState((prevState) => {
-  //     return { ...prevState, cartId: id };
-  //   });
-  // };
-  handleNextImage = (id) => {
+  handleNextImage = () => {
     this.setState((prevState) => {
-      return { ...prevState, cartId: id };
-    });
-    if (this.state.cartId === id) {
-      return this.setState((prevState) => {
-        return {
-          ...prevState,
-          imageIndex: prevState.imageIndex + 1,
-        };
-      });
-    } else {
       return {
-        ...this.state,
-        imageIndex: 0,
+        ...prevState,
+        imageIndex: prevState.imageIndex + 1,
       };
-    }
+    });
   };
   handlePrevImage = () => {
     this.setState((prevState) => {
@@ -69,6 +37,39 @@ class CartPage extends Component {
       };
     });
   };
+
+  // handleId = (id) => {
+  //   this.setState((prevState) => {
+  //     return { ...prevState, cartId: id };
+  //   });
+  // };
+
+  // handleNextImage = (id) => {
+  //   this.setState((prevState) => {
+  //     return { ...prevState, cartId: id };
+  //   });
+  //   if (this.state.cartId === id) {
+  //     return this.setState((prevState) => {
+  //       return {
+  //         ...prevState,
+  //         imageIndex: prevState.imageIndex + 1,
+  //       };
+  //     });
+  //   } else {
+  //     return {
+  //       ...this.state,
+  //       imageIndex: 0,
+  //     };
+  //   }
+  // };
+  // handlePrevImage = () => {
+  //   this.setState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       imageIndex: prevState.imageIndex - 1,
+  //     };
+  //   });
+  // };
 
   render() {
     const { cartItems, currencySymbol, addItem, removeItem, totalAmount } =
