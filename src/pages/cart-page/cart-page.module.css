@@ -19,7 +19,7 @@
   justify-content: center;
   margin: auto;
 }
-.cart-item {
+/* .cart-item {
   border-top: 1px solid lightgray;
   padding-top: 20px;
   margin-bottom: 40px;
@@ -125,7 +125,7 @@
   height: 120px;
   object-fit: fill;
   width: 120px;
-}
+} */
 
 .total-section {
   display: flex;
