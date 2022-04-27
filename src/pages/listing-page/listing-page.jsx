@@ -80,55 +80,6 @@ class ListingPage extends React.Component {
                             {!product.inStock && "OUT OF STOCK"}{" "}
                           </div>
                         </div>
-                        <div className={styles["attribute-container"]}>
-                          {product.attributes.map((attr) => {
-                            return (
-                              <span key={attr.name}>
-                                <span className={styles["attribute-name"]}>
-                                  {attr.name.toUpperCase()} :
-                                </span>
-                                <div className={styles.attributes}>
-                                  {attr.items.map((item) => {
-                                    return (
-                                      <span key={item.value}>
-                                        <div
-                                          className={styles["attribute-box"]}
-                                          onClick={
-                                            (this.handleChoice = () => {
-                                              this.setState({
-                                                attributes: {
-                                                  ...this.state.attributes,
-                                                  [attr.name]: item.value,
-                                                },
-                                              });
-                                            })
-                                          }
-                                        >
-                                          <input
-                                            id={item.value}
-                                            type="checkbox"
-                                            name={item.value}
-                                          />
-                                          <label
-                                            style={{
-                                              backgroundColor: item.value,
-                                              minWidth: "30px",
-                                            }}
-                                            htmlFor={item.value}
-                                          >
-                                            {attr.type === "swatch"
-                                              ? " "
-                                              : item.value}{" "}
-                                          </label>
-                                        </div>
-                                      </span>
-                                    );
-                                  })}
-                                </div>
-                              </span>
-                            );
-                          })}
-                        </div>
                         <Link to={`/product/${product.id}`}>
                           <div className={styles["card-footer"]}>
                             <p className={styles["product-name"]}>
