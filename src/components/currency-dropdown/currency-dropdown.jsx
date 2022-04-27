@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import styles from "./currency-dropdown.module.css";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
@@ -6,7 +6,7 @@ import { CURRENCY_LIST } from "../../queries";
 import CurrencyModal from "../currency-modal/currency-modal";
 import { ChangeCurrency } from "../../redux/currency/currency.action";
 
-class CurrencyDropdown extends React.Component {
+class CurrencyDropdown extends PureComponent {
   render() {
     const { ChangeCurrency } = this.props;
     return (

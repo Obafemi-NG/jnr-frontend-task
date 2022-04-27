@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 
 import { selectCurrencySymbol } from "../../redux/currency/currency.selector";
 
@@ -16,7 +16,7 @@ import { ReactComponent as AngleLeft } from "../../assets/angle-left.svg";
 import { addItem, removeItem } from "../../redux/cart/cart.action";
 import styles from "./cart-item.module.css";
 
-class CartItem extends React.Component {
+class CartItem extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

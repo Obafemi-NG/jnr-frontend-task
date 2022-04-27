@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import CartOverlay from "../../components/cart-overlay/cart-overlay";
 
 import { connect } from "react-redux";
@@ -25,7 +25,7 @@ import {
 import { selectCategory } from "../../redux/product/product.selector";
 import { withRouter } from "../../withRouter";
 
-class ListingPage extends React.Component {
+class ListingPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -98,18 +98,6 @@ class ListingPage extends React.Component {
                           <div
                             onClick={
                               (this.handleAddToCart = () => {
-                                // if (!(product.attributes.length === 0)) {
-                                //   if (
-                                //     Object.keys(this.state.attributes)
-                                //       .length === 0
-                                //   ) {
-                                //     return;
-                                //   }
-                                // }
-                                // addItemToCart(cartProduct);
-                                // this.setState({
-                                //   attributes: {},
-                                // });
                                 this.props.navigate(`/product/${product.id}`);
                               })
                             }

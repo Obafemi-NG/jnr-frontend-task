@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Query } from "@apollo/client/react/components";
 
 import { PRODUCT_DETAILS } from "../../queries";
@@ -15,7 +15,7 @@ import {
   selectCurrencySymbol,
 } from "../../redux/currency/currency.selector";
 
-class DescriptionPage extends Component {
+class DescriptionPage extends PureComponent {
   constructor(props) {
     super(props);
     this.handleImage = this.handleImage.bind(this);
@@ -24,6 +24,11 @@ class DescriptionPage extends Component {
       attributes: {},
     };
   }
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   handleImage = (index) => {
     this.setState({ imageIndex: index });
   };
@@ -40,7 +45,6 @@ class DescriptionPage extends Component {
             if (loading) return <div> Loading... </div>;
             if (error) return <div> Error Loading Product details. </div>;
             else {
-              // console.log(data);
               const productInfo = data.product;
               const productPrice = productInfo.prices.find(
                 (price) => price.currency.symbol === currencySymbol

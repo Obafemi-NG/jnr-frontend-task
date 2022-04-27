@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { Fragment } from "react";
 import ReactDOM from "react-dom";
 
@@ -22,7 +22,7 @@ const ModalOverlay = (props) => {
 
 const overlayElement = document.getElementById("overlay");
 
-class Modal extends React.Component {
+class Modal extends PureComponent {
   render() {
     const { toggleCart, children } = this.props;
     return (

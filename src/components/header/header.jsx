@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import styles from "./header.module.css";
 
 import { connect } from "react-redux";
@@ -10,7 +10,6 @@ import { toggleCurrencyDropdown } from "../../redux/currency/currency.action";
 import { changeCategory } from "../../redux/product/product.action";
 
 import { Query } from "@apollo/client/react/components";
-import { gql } from "@apollo/client";
 
 import CartIcon from "../cart-icon/cart-icon";
 
@@ -23,17 +22,10 @@ import {
   selectCurrencySymbol,
 } from "../../redux/currency/currency.selector";
 
-class Header extends React.Component {
+class Header extends PureComponent {
   render() {
     const { toggleCurrencyDropdown, hidden, currencySymbol, changeCategory } =
       this.props;
-    // const GET_LINKS = gql`
-    //   {
-    //     categories {
-    //       name
-    //     }
-    //   }
-    // `;
     return (
       <div className={styles["navbar"]}>
         <Query query={GET_LINKS}>

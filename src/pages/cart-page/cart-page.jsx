@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import styles from "./cart-page.module.css";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -10,7 +10,7 @@ import { selectCurrencySymbol } from "../../redux/currency/currency.selector";
 
 import CartItem from "../../components/cart-item/cart-item";
 
-class CartPage extends Component {
+class CartPage extends PureComponent {
   render() {
     const { cartItems, currencySymbol, totalAmount } = this.props;
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { ReactComponent as Cart } from "../../assets/cart.svg";
 
 import { connect } from "react-redux";
@@ -10,7 +10,7 @@ import { toggleCart } from "../../redux/cart/cart.action";
 import styles from "./cart-icon.module.css";
 import { createStructuredSelector } from "reselect";
 
-class CartIcon extends React.Component {
+class CartIcon extends PureComponent {
   render() {
     const { toggleCart, itemCount } = this.props;
     return (

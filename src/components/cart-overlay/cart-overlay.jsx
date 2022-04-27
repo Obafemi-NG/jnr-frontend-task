@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import Modal from "../cart-modal/cart-modal";
 import styles from "./cart-overlay.module.css";
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ import {
 } from "../../redux/cart/cart.selector";
 import { selectCurrencySymbol } from "../../redux/currency/currency.selector";
 
-class CartOverlay extends React.Component {
+class CartOverlay extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

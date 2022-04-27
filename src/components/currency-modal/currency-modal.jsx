@@ -1,17 +1,17 @@
-import React, { Fragment } from "react";
+import React, { Fragment, PureComponent } from "react";
 import ReactDOM from "react-dom";
 import { toggleCurrencyDropdown } from "../../redux/currency/currency.action";
 import styles from "./currency-modal.module.css";
 import { connect } from "react-redux";
 
-class Backdrop extends React.Component {
+class Backdrop extends PureComponent {
   render() {
     const { onclose } = this.props;
     return <div className={styles.backdrop} onClick={onclose} />;
   }
 }
 
-class CurrencyModalOverlay extends React.Component {
+class CurrencyModalOverlay extends PureComponent {
   render() {
     const { children } = this.props;
     return (
@@ -24,7 +24,7 @@ class CurrencyModalOverlay extends React.Component {
 
 const overlayElement = document.getElementById("overlay");
 
-class CurrencyModal extends React.Component {
+class CurrencyModal extends PureComponent {
   render() {
     const { toggleCurrency, children } = this.props;
 
