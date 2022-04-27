@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./header.module.css";
 
 import { connect } from "react-redux";
+import { GET_LINKS } from "../../queries";
 
 import { createStructuredSelector } from "reselect";
 
@@ -26,13 +27,13 @@ class Header extends React.Component {
   render() {
     const { toggleCurrencyDropdown, hidden, currencySymbol, changeCategory } =
       this.props;
-    const GET_LINKS = gql`
-      {
-        categories {
-          name
-        }
-      }
-    `;
+    // const GET_LINKS = gql`
+    //   {
+    //     categories {
+    //       name
+    //     }
+    //   }
+    // `;
     return (
       <div className={styles["navbar"]}>
         <Query query={GET_LINKS}>

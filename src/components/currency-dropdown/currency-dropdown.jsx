@@ -1,22 +1,14 @@
 import React from "react";
 import styles from "./currency-dropdown.module.css";
 import { Query } from "@apollo/client/react/components";
-import { gql } from "@apollo/client";
 import { connect } from "react-redux";
+import { CURRENCY_LIST } from "../../queries";
 import CurrencyModal from "../currency-modal/currency-modal";
 import { ChangeCurrency } from "../../redux/currency/currency.action";
 
 class CurrencyDropdown extends React.Component {
   render() {
     const { ChangeCurrency } = this.props;
-    const CURRENCY_LIST = gql`
-      {
-        currencies {
-          label
-          symbol
-        }
-      }
-    `;
     return (
       <Query query={CURRENCY_LIST}>
         {({ loading, error, data }) => {

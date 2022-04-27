@@ -3,7 +3,8 @@ import CartOverlay from "../../components/cart-overlay/cart-overlay";
 
 import { connect } from "react-redux";
 
-import { gql } from "@apollo/client";
+import { Product_lists } from "../../queries";
+
 import { Query } from "@apollo/client/react/components";
 
 import styles from "./listing-page.module.css";
@@ -32,37 +33,6 @@ class ListingPage extends React.Component {
   }
 
   render() {
-    const PRODUCT_LISTS = gql`
-      {
-        categories {
-          name
-          products {
-            id
-            name
-            brand
-            description
-            gallery
-            inStock
-            attributes {
-              id
-              name
-              type
-              items {
-                displayValue
-                value
-              }
-            }
-            prices {
-              amount
-              currency {
-                label
-                symbol
-              }
-            }
-          }
-        }
-      }
-    `;
     const { hidden, currencyHidden, category, addItemToCart } = this.props;
     return (
       <div className={styles.overview}>
@@ -70,7 +40,7 @@ class ListingPage extends React.Component {
         {currencyHidden ? null : <CurrencyDropdown />}
         <div className={styles.title}> {category.toUpperCase()} </div>
         <div className={styles["product-lists"]}>
-          <Query query={PRODUCT_LISTS}>
+          <Query query={Product_lists}>
             {({ loading, error, data }) => {
               if (loading) return <div>Loading...</div>;
               if (error) return <div> Error! {error.message} </div>;
@@ -85,7 +55,6 @@ class ListingPage extends React.Component {
                       currency.currency.symbol === this.props.currencySymbol
                   );
 
-                  //I am close to cracking this ProductAttribute thingyyy!.
                   const cartProduct = {
                     name: product.name,
                     brand: product.brand,

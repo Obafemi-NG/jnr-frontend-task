@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Query } from "@apollo/client/react/components";
-import { gql } from "@apollo/client";
+
+import { PRODUCT_DETAILS } from "../../queries";
+
 import styles from "./description-page.module.css";
 import CartOverlay from "../../components/cart-overlay/cart-overlay";
 import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdown";
@@ -29,40 +31,11 @@ class DescriptionPage extends Component {
     const { addItemToCart } = this.props;
     const { hidden, currencyHidden, currencySymbol } = this.props;
     const currentID = window.location.pathname.split("/")[2];
-    const PRODUCT_DETAILS = gql`
-      {
-        product(id: ${JSON.stringify(currentID)} ) {
-          id
-          name
-          description
-          gallery
-          inStock
-          brand
-          attributes {
-            id
-            name
-            type
-            items{
-              id
-              value
-              displayValue
-            }
-          }
-          prices {
-            amount
-            currency {
-              label
-              symbol
-            }
-          }
-        }
-      }
-    `;
     return (
       <div className={styles["description-page"]}>
         {hidden ? null : <CartOverlay />}
         {currencyHidden ? null : <CurrencyDropdown />}
-        <Query query={PRODUCT_DETAILS}>
+        <Query query={PRODUCT_DETAILS(currentID)}>
           {({ loading, error, data }) => {
             if (loading) return <div> Loading... </div>;
             if (error) return <div> Error Loading Product details. </div>;
