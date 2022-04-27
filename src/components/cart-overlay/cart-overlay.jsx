@@ -55,7 +55,7 @@ class CartOverlay extends PureComponent {
                     <p> {cartItem.name} </p>
                     <h4 className={styles.price}>
                       {" "}
-                      {`${cartItem.symbol}${cartItem.amount} `}{" "}
+                      {`${cartItem.symbol}${cartItem.amount.toFixed(2)} `}{" "}
                     </h4>
                     <div className={styles.attributes}>
                       {Object.keys(cartItem.attributes).map((key) => {

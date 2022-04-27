@@ -10,8 +10,6 @@ import { Query } from "@apollo/client/react/components";
 import styles from "./listing-page.module.css";
 import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdown";
 
-import { addItem } from "../../redux/cart/cart.action";
-
 import Card from "../../components/card/card";
 import { Link } from "react-router-dom";
 
@@ -26,15 +24,8 @@ import { selectCategory } from "../../redux/product/product.selector";
 import { withRouter } from "../../withRouter";
 
 class ListingPage extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      attributes: {},
-    };
-  }
-
   render() {
-    const { hidden, currencyHidden, category, addItemToCart } = this.props;
+    const { hidden, currencyHidden, category } = this.props;
     return (
       <div className={styles.overview}>
         {hidden ? null : <CartOverlay />}
@@ -55,16 +46,6 @@ class ListingPage extends PureComponent {
                     (currency) =>
                       currency.currency.symbol === this.props.currencySymbol
                   );
-
-                  const cartProduct = {
-                    name: product.name,
-                    brand: product.brand,
-                    gallery: product.gallery,
-                    id: product.id,
-                    amount: productPrice.amount,
-                    symbol: productPrice.currency.symbol,
-                    attributes: this.state.attributes,
-                  };
                   return (
                     <Card inStock={product.inStock} key={product.id}>
                       <div className={styles["card-overlay"]}>
@@ -90,7 +71,7 @@ class ListingPage extends PureComponent {
                             <p className={styles["product-price"]}>
                               {" "}
                               {productPrice.currency.symbol}
-                              {productPrice.amount}{" "}
+                              {productPrice.amount.toFixed(2)}{" "}
                             </p>
                           </div>
                         </Link>
@@ -125,10 +106,4 @@ const mapStateToProps = createStructuredSelector({
   currencySymbol: selectCurrencySymbol,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  addItemToCart: (item) => dispatch(addItem(item)),
-});
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ListingPage)
-);
+export default withRouter(connect(mapStateToProps)(ListingPage));

@@ -137,7 +137,8 @@ class DescriptionPage extends PureComponent {
                       <h4 className={styles["price-title"]}> PRICE : </h4>
                       <p className={styles["price-amount"]}>
                         {" "}
-                        {productPrice.currency.symbol} {productPrice.amount}{" "}
+                        {productPrice.currency.symbol}{" "}
+                        {productPrice.amount.toFixed(2)}{" "}
                       </p>
                     </div>
                     <div className={styles["cta-section"]}>

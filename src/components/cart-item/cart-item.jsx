@@ -20,7 +20,6 @@ class CartItem extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      // cartId: "",
       imageIndex: 0,
     };
   }
@@ -52,7 +51,7 @@ class CartItem extends PureComponent {
           <p className={styles.amount}>
             {" "}
             {currencySymbol}
-            {cartItem.amount}{" "}
+            {cartItem.amount.toFixed(2)}{" "}
           </p>
           <div className={styles.attributes}>
             {Object.keys(cartItem.attributes).map((key) => {
