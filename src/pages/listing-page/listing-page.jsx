@@ -23,6 +23,7 @@ import {
   selectCurrencySymbol,
 } from "../../redux/currency/currency.selector";
 import { selectCategory } from "../../redux/product/product.selector";
+import { withRouter } from "../../withRouter";
 
 class ListingPage extends React.Component {
   constructor(props) {
@@ -97,18 +98,19 @@ class ListingPage extends React.Component {
                           <div
                             onClick={
                               (this.handleAddToCart = () => {
-                                if (!(product.attributes.length === 0)) {
-                                  if (
-                                    Object.keys(this.state.attributes)
-                                      .length === 0
-                                  ) {
-                                    return;
-                                  }
-                                }
-                                addItemToCart(cartProduct);
-                                this.setState({
-                                  attributes: {},
-                                });
+                                // if (!(product.attributes.length === 0)) {
+                                //   if (
+                                //     Object.keys(this.state.attributes)
+                                //       .length === 0
+                                //   ) {
+                                //     return;
+                                //   }
+                                // }
+                                // addItemToCart(cartProduct);
+                                // this.setState({
+                                //   attributes: {},
+                                // });
+                                this.props.navigate(`/product/${product.id}`);
                               })
                             }
                             className={styles["add-to-cart-btn"]}
@@ -139,4 +141,6 @@ const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (item) => dispatch(addItem(item)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ListingPage)
+);
