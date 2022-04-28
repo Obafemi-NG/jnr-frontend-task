@@ -168,6 +168,9 @@ input:checked ~ label {
 .cta-button:hover {
   cursor: pointer;
 }
+/* .out-of-stock {
+  cursor: not-allowed;
+} */
 .description-section {
   margin-top: 30px;
 }

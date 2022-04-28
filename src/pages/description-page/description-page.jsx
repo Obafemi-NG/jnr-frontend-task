@@ -104,60 +104,10 @@ class DescriptionPage extends PureComponent {
                               {`${attribute.name.toUpperCase()} :`}{" "}
                             </h4>
                             <div className={styles.attributes}>
-                              {/* {attribute.type !== "swatch" && (
-                                <div className={styles["non-swatch"]}>
-                                  {attribute.items.map((item) => {
-                                    return (
-                                      <div
-                                        onClick={
-                                          (this.handleChoice = () => {
-                                            this.setState({
-                                              attributes: {
-                                                ...this.state.attributes,
-                                                [attribute.name]: item.value,
-                                              },
-                                            });
-                                            console.log(this.state.attributes);
-                                          })
-                                        }
-                                        className={`${styles.attribute} ${
-                                          this.state.attributes > 0 &&
-                                          this.state.attributes.name ===
-                                            item.name
-                                            ? styles.active
-                                            : ""
-                                        } `}
-                                        key={item.id}
-                                      >
-                                        {item.value}
-                                      </div>
-                                    );
-                                  })}
-                                </div>
-                              )}
-                              {attribute.type === "swatch" && (
-                                <div className={styles.swatch}>
-                                  {attribute.items.map((item) => {
-                                    return (
-                                      <div
-                                        className={styles["swatch-attribute"]}
-                                        key={item.id}
-                                        style={{
-                                          width: "30px",
-                                          height: "25px",
-                                          backgroundColor: item.value,
-                                          border: "1px solid gray",
-                                        }}
-                                      />
-                                    );
-                                  })}
-                                </div>
-                              )} */}
-
                               {attribute.items.map((item) => {
                                 const isChecked =
                                   item.id === this.state.selectedId;
-
+                                // console.log(item);
                                 return (
                                   <span key={item.id}>
                                     <div
@@ -170,14 +120,15 @@ class DescriptionPage extends PureComponent {
                                               [attribute.name]: item.value,
                                             },
                                           });
-                                          console.log(this.state.selectedId);
-                                          console.log(
-                                            this.state.attributes.length
-                                          );
+                                          // console.log(this.state.selectedId);
+                                          // console.log(
+                                          //   this.state.attributes.length
+                                          // );
                                         })
                                       }
                                       className={styles["attribute-box"]}
                                     >
+                                      {/* FOR SOME ATTRIBUTE LIKE 'WITH USB 3 PORT' AND 'TOUCH ID IN KEYBOARD' ON THE IMAC PRODUCT THAT SHARE THE SAME ID, VALUE AND DISPLAY VALUE I.E: 'YES' AND 'NO' FROM THE GRAPHQL API, THERE IS NO WAY I CAN DISTINGUISH THEM SO ONCE A 'YES' OPTION IS CLICKED, IT GETS CLICKED ON BOTH OPTIONS. AND SAME GOES TO THE 'NO' OPTION */}
                                       <input
                                         id={item.id}
                                         type="checkbox"
@@ -229,13 +180,18 @@ class DescriptionPage extends PureComponent {
                                 return;
                               }
                             }
+                            if (!productInfo.inStock) {
+                              return;
+                            }
                             addItemToCart(cartProduct);
                             this.setState({
                               attributes: {},
                             });
                           })
                         }
-                        className={styles["cta-button"]}
+                        className={`${styles["cta-button"]} ${
+                          !productInfo.inStock && styles["out-of-stock"]
+                        } `}
                       >
                         {" "}
                         ADD TO CART{" "}
