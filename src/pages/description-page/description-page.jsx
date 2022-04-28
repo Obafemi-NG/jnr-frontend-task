@@ -15,6 +15,7 @@ import {
   selectCurrencyHidden,
   selectCurrencySymbol,
 } from "../../redux/currency/currency.selector";
+import AttributeInput from "../../components/attribute-input/attribute-input";
 
 class DescriptionPage extends PureComponent {
   constructor(props) {
@@ -31,14 +32,10 @@ class DescriptionPage extends PureComponent {
     window.scrollTo(0, 0);
   }
 
-  changeHandler = (value, id) => {
-    if (value) {
-      this.setState({
-        selectedId: id,
-      });
-    } else {
-      // handle de-select
-    }
+  changeHandler = (id) => {
+    this.setState({
+      selectedId: id,
+    });
   };
 
   handleImage = (index) => {
@@ -106,9 +103,8 @@ class DescriptionPage extends PureComponent {
                             </h4>
                             <div className={styles.attributes}>
                               {attribute.items.map((item) => {
-                                const isChecked =
-                                  item.id === this.state.selectedId;
-                                // console.log(item);
+                                console.log(item.id);
+
                                 return (
                                   <span key={item.id}>
                                     <div
@@ -121,16 +117,24 @@ class DescriptionPage extends PureComponent {
                                               [attribute.name]: item.value,
                                             },
                                           });
-                                          // console.log(this.state.selectedId);
-                                          // console.log(
-                                          //   this.state.attributes.length
-                                          // );
                                         })
                                       }
                                       className={styles["attribute-box"]}
                                     >
-                                      {/* FOR SOME ATTRIBUTE LIKE 'WITH USB 3 PORT' AND 'TOUCH ID IN KEYBOARD' ON THE IMAC PRODUCT THAT SHARE THE SAME ID, VALUE AND DISPLAY VALUE I.E: 'YES' AND 'NO' FROM THE GRAPHQL API, THERE IS NO WAY I CAN DISTINGUISH THEM SO ONCE A 'YES' OPTION IS CLICKED, IT GETS CLICKED ON BOTH OPTIONS. AND SAME GOES TO THE 'NO' OPTION */}
-                                      <input
+                                      {/* PLEASE READ!!!! */}
+
+                                      {/* FOR SOME ATTRIBUTE LIKE 'WITH USB 3 PORT' AND 'TOUCH ID IN KEYBOARD' ON THE IMAC PRODUCT THAT SHARE THE SAME ID, VALUE AND DISPLAY VALUE I.E: 'YES' AND 'NO' FROM THE GRAPHQL API, THERE IS NO WAY I CAN DISTINGUISH THEM SO ONCE A 'YES' OPTION IS CLICKED, IT GETS CLICKED ON BOTH OPTIONS. AND SAME GOES TO THE 'NO' OPTION, If the ID of these two options are changed to distinct ID's from the backend, it would work perfectly well. */}
+
+                                      <AttributeInput
+                                        key={item.id}
+                                        onSelect={this.changeHandler}
+                                        itemValue={item.value}
+                                        selectedId={this.state.selectedId}
+                                        itemId={item.id}
+                                        attributeType={attribute.type}
+                                      />
+                                      {/* BELOW IS A COMMENT OF AN ALTERNATIVE WAY I COULD HAVE RENDERED THE ATTRIBUTE OPTIONS, BUT SINCE I WORK WITH THE ID, IT STILL HAS THE SAME ERROR OF SELECTING ATTRIBUTE WITH THE SAME ATTRIBUTE FROM THE GRAPHQL API. */}
+                                      {/* <input
                                         id={item.id}
                                         type="checkbox"
                                         name="attribute"
@@ -141,8 +145,8 @@ class DescriptionPage extends PureComponent {
                                             item.id
                                           )
                                         }
-                                      />
-                                      <label
+                                      /> */}
+                                      {/* <label
                                         style={{
                                           backgroundColor: item.value,
                                           minWidth: "30px",
@@ -152,7 +156,7 @@ class DescriptionPage extends PureComponent {
                                         {attribute.type === "swatch"
                                           ? " "
                                           : item.value}{" "}
-                                      </label>
+                                      </label> */}
                                     </div>
                                   </span>
                                 );

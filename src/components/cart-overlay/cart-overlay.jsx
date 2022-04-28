@@ -57,23 +57,36 @@ class CartOverlay extends PureComponent {
                       {" "}
                       {`${cartItem.symbol}${cartItem.amount.toFixed(2)} `}{" "}
                     </h4>
-                    <div className={styles.attributes}>
+                    <div className={styles["attribute-container"]}>
                       {Object.keys(cartItem.attributes).map((key) => {
                         return key === "Color" ? (
-                          <div
-                            key={key}
-                            style={{
-                              backgroundColor: cartItem.attributes[key],
-                              minWidth: "20px",
-                              border: "none",
-                            }}
-                            className={styles.attribute}
-                          >
-                            {" "}
+                          <div key={key} className={styles.attributes}>
+                            <p className={styles["attribute-key"]}>
+                              {" "}
+                              {key.toUpperCase()}{" "}
+                            </p>
+                            <div
+                              style={{
+                                backgroundColor: cartItem.attributes[key],
+                                minWidth: "20px",
+                                border: "none",
+                              }}
+                              className={styles.attribute}
+                            >
+                              {" "}
+                            </div>
                           </div>
                         ) : (
-                          <div key={key} className={styles.attribute}>
-                            {key === "Color" ? null : cartItem.attributes[key]}
+                          <div key={key} className={styles.attributes}>
+                            <p className={styles["attribute-key"]}>
+                              {" "}
+                              {key.toUpperCase()}{" "}
+                            </p>
+                            <div className={styles.attribute}>
+                              {key === "Color"
+                                ? null
+                                : cartItem.attributes[key]}
+                            </div>
                           </div>
                         );
                       })}

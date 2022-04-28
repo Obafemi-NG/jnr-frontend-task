@@ -1,8 +1,9 @@
-import React, { Component, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import styles from "./cart-page.module.css";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
+  selectAllCartItemCount,
   selectCartItems,
   selectCartTotalPrice,
 } from "../../redux/cart/cart.selector";
@@ -12,7 +13,7 @@ import CartItem from "../../components/cart-item/cart-item";
 
 class CartPage extends PureComponent {
   render() {
-    const { cartItems, currencySymbol, totalAmount } = this.props;
+    const { cartItems, currencySymbol, totalAmount, itemCount } = this.props;
 
     return (
       <div className={styles["cart-page"]}>
@@ -30,13 +31,28 @@ class CartPage extends PureComponent {
         )}
 
         {cartItems.length ? (
-          <div className={styles["total-section"]}>
-            <h4 className={styles.total}>TOTAL</h4>
-            <p className={styles["total-amount"]}>
-              {" "}
-              {currencySymbol}
-              {totalAmount.toFixed(2)}{" "}
-            </p>
+          <div className={styles["bottom-section"]}>
+            <div className={styles.top}>
+              <div className={styles["tax-section"]}>
+                <h4 className={styles.total}>Tax</h4>
+                <p className={styles["total-amount"]}>
+                  {" "}
+                  {`${currencySymbol} 50.00`}{" "}
+                </p>
+              </div>
+              <div className={styles["quantity-section"]}>
+                <h4 className={styles.total}>Qty</h4>
+                <p className={styles["total-amount"]}>{itemCount}</p>
+              </div>
+            </div>
+            <div className={styles["total-section"]}>
+              <h4 className={styles.total}>Total</h4>
+              <p className={styles["total-amount"]}>
+                {" "}
+                {currencySymbol}
+                {totalAmount.toFixed(2)}{" "}
+              </p>
+            </div>
           </div>
         ) : (
           ""
@@ -45,7 +61,7 @@ class CartPage extends PureComponent {
         {cartItems.length ? (
           <div className={styles.cta}>
             <button disabled={true} className={styles["checkout-btn"]}>
-              PROCEED TO CHECKOUT
+              ORDER
             </button>
           </div>
         ) : (
@@ -60,6 +76,7 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   currencySymbol: selectCurrencySymbol,
   totalAmount: selectCartTotalPrice,
+  itemCount: selectAllCartItemCount,
 });
 
 export default connect(mapStateToProps)(CartPage);

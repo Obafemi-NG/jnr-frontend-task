@@ -22,10 +22,19 @@
   margin-top: 13px;
   font-weight: 500;
 }
+.attribute-container {
+  margin-top: 15px;
+}
+
 .attributes {
   display: flex;
-  margin-top: 25px;
-  /* justify-content: space-around; */
+  align-items: center;
+  margin-top: 5px;
+}
+.attribute-key {
+  font-size: 12px;
+  margin-right: 10px;
+  font-weight: 500;
 }
 .attribute {
   font-size: 12px;
