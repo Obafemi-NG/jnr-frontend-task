@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Query } from "@apollo/client/react/components";
+import parse from "html-react-parser";
 
 import { PRODUCT_DETAILS } from "../../queries";
 
@@ -197,12 +198,10 @@ class DescriptionPage extends PureComponent {
                         ADD TO CART{" "}
                       </button>
                     </div>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: productInfo.description,
-                      }}
-                      className={styles["description-section"]}
-                    ></div>
+                    <div className={styles["description-section"]}>
+                      {" "}
+                      {parse(`${productInfo.description}`)}{" "}
+                    </div>
                   </div>
                 </div>
               );
