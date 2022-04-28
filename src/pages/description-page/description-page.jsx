@@ -21,6 +21,7 @@ class DescriptionPage extends PureComponent {
     this.handleImage = this.handleImage.bind(this);
     this.state = {
       imageIndex: 0,
+      selectedId: null,
       attributes: {},
     };
   }
@@ -29,9 +30,20 @@ class DescriptionPage extends PureComponent {
     window.scrollTo(0, 0);
   }
 
+  changeHandler = (value, id) => {
+    if (value) {
+      this.setState({
+        selectedId: id,
+      });
+    } else {
+      // handle de-select
+    }
+  };
+
   handleImage = (index) => {
     this.setState({ imageIndex: index });
   };
+
   render() {
     const { addItemToCart } = this.props;
     const { hidden, currencyHidden, currencySymbol } = this.props;
@@ -92,18 +104,76 @@ class DescriptionPage extends PureComponent {
                               {`${attribute.name.toUpperCase()} :`}{" "}
                             </h4>
                             <div className={styles.attributes}>
+                              {/* {attribute.type !== "swatch" && (
+                                <div className={styles["non-swatch"]}>
+                                  {attribute.items.map((item) => {
+                                    return (
+                                      <div
+                                        onClick={
+                                          (this.handleChoice = () => {
+                                            this.setState({
+                                              attributes: {
+                                                ...this.state.attributes,
+                                                [attribute.name]: item.value,
+                                              },
+                                            });
+                                            console.log(this.state.attributes);
+                                          })
+                                        }
+                                        className={`${styles.attribute} ${
+                                          this.state.attributes > 0 &&
+                                          this.state.attributes.name ===
+                                            item.name
+                                            ? styles.active
+                                            : ""
+                                        } `}
+                                        key={item.id}
+                                      >
+                                        {item.value}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                              {attribute.type === "swatch" && (
+                                <div className={styles.swatch}>
+                                  {attribute.items.map((item) => {
+                                    return (
+                                      <div
+                                        className={styles["swatch-attribute"]}
+                                        key={item.id}
+                                        style={{
+                                          width: "30px",
+                                          height: "25px",
+                                          backgroundColor: item.value,
+                                          border: "1px solid gray",
+                                        }}
+                                      />
+                                    );
+                                  })}
+                                </div>
+                              )} */}
+
                               {attribute.items.map((item) => {
+                                const isChecked =
+                                  item.id === this.state.selectedId;
+
                                 return (
                                   <span key={item.id}>
                                     <div
                                       onClick={
                                         (this.handleChoice = () => {
                                           this.setState({
+                                            ...this.state,
                                             attributes: {
                                               ...this.state.attributes,
                                               [attribute.name]: item.value,
                                             },
                                           });
+                                          console.log(this.state.selectedId);
+                                          console.log(
+                                            this.state.attributes.length
+                                          );
                                         })
                                       }
                                       className={styles["attribute-box"]}
@@ -111,7 +181,14 @@ class DescriptionPage extends PureComponent {
                                       <input
                                         id={item.id}
                                         type="checkbox"
-                                        name={item.value}
+                                        name="attribute"
+                                        checked={isChecked}
+                                        onChange={(e) =>
+                                          this.changeHandler(
+                                            e.target.checked,
+                                            item.id
+                                          )
+                                        }
                                       />
                                       <label
                                         style={{
@@ -154,7 +231,7 @@ class DescriptionPage extends PureComponent {
                             }
                             addItemToCart(cartProduct);
                             this.setState({
-                              attributes: [],
+                              attributes: {},
                             });
                           })
                         }
