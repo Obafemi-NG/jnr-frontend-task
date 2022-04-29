@@ -27,15 +27,3 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
     );
   }
 };
-
-// export const addAttribute = (attributes, attributeToAdd) => {
-//   const existingAttr = Object.keys(attributes).find(
-//     (key) => attributes[key] === attributeToAdd[key]
-//   );
-//   if (!existingAttr) {
-//     return {
-//       ...attributes,
-//       attributes: attributeToAdd,
-//     };
-//   }
-// };
