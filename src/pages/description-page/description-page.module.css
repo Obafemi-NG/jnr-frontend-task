@@ -100,18 +100,11 @@ input[type="checkbox"] {
 }
 
 input:checked ~ label {
-  border: 2px solid green;
-  background-color: green;
+  /* border: 2px solid green;
+  background-color: green; */
   border-radius: 5px;
   color: white;
 }
-
-/* .active {
-  border: 1px solid black;
-  background-color: black;
-  border-radius: 5px;
-  color: white;
-} */
 
 .swatch-attribute {
   margin-right: 10px;
@@ -168,9 +161,7 @@ input:checked ~ label {
 .cta-button:hover {
   cursor: pointer;
 }
-/* .out-of-stock {
-  cursor: not-allowed;
-} */
+
 .description-section {
   margin-top: 30px;
 }

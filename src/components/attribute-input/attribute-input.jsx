@@ -15,8 +15,7 @@ class AttributeInput extends PureComponent {
     }
   };
   render() {
-    const { itemId, selectedId, itemValue, attributeType, checked } =
-      this.props;
+    const { itemId, selectedId, itemValue, attributeType } = this.props;
     const isChecked = itemId === selectedId;
     return (
       <div>
