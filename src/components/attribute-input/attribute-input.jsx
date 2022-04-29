@@ -1,6 +1,12 @@
 import { PureComponent } from "react";
 
 class AttributeInput extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedId: null,
+    };
+  }
   changeHandler = (value, id) => {
     if (value) {
       this.props.onSelect(id);
@@ -9,7 +15,8 @@ class AttributeInput extends PureComponent {
     }
   };
   render() {
-    const { itemId, selectedId, itemValue, attributeType } = this.props;
+    const { itemId, selectedId, itemValue, attributeType, checked } =
+      this.props;
     const isChecked = itemId === selectedId;
     return (
       <div>

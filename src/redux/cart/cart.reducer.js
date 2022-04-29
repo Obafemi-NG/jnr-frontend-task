@@ -3,6 +3,7 @@ import { addItemToCart, removeItemFromCart } from "./cart.util";
 const INITIAL_STATE = {
   hidden: true,
   cartItems: [],
+  attributes: {},
 };
 export const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -20,6 +21,11 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.payload),
+      };
+    case cartActionTypes.ADD_ATTRIBUTE:
+      return {
+        ...state,
+        attributes: { ...state.attributes, ...action.payload },
       };
     default:
       return state;

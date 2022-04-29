@@ -1,0 +1,42 @@
+.attribute-section {
+  margin-top: 40px;
+}
+
+.non-swatch {
+  display: flex;
+}
+.swatch {
+  display: flex;
+}
+.attribute-title {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.attributes {
+  display: flex;
+}
+.attribute-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-right: 5px;
+}
+.attribute {
+  display: flex;
+  border: solid 1px black;
+  padding: 5px;
+  width: fit-content;
+  height: 25px;
+  color: black;
+  text-align: center;
+  line-height: 12px;
+  margin-right: 10px;
+}
+
+.attribute:hover {
+  cursor: pointer;
+}

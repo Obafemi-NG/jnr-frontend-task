@@ -9,13 +9,18 @@ import CartOverlay from "../../components/cart-overlay/cart-overlay";
 import CurrencyDropdown from "../../components/currency-dropdown/currency-dropdown";
 import { connect } from "react-redux";
 import { addItem } from "../../redux/cart/cart.action";
+import {
+  addAttribute,
+  resetAttribute,
+} from "../../redux/attribute/attribute.action";
 import { createStructuredSelector } from "reselect";
 import { selectCartHidden } from "../../redux/cart/cart.selector";
+import { selectCartAttribute } from "../../redux/attribute/attribute.selector";
 import {
   selectCurrencyHidden,
   selectCurrencySymbol,
 } from "../../redux/currency/currency.selector";
-import AttributeInput from "../../components/attribute-input/attribute-input";
+import Attribute from "../../components/attribute-input/attribute-component";
 
 class DescriptionPage extends PureComponent {
   constructor(props) {
@@ -24,7 +29,6 @@ class DescriptionPage extends PureComponent {
     this.state = {
       imageIndex: 0,
       selectedId: null,
-      attributes: {},
     };
   }
 
@@ -44,7 +48,13 @@ class DescriptionPage extends PureComponent {
 
   render() {
     const { addItemToCart } = this.props;
-    const { hidden, currencyHidden, currencySymbol } = this.props;
+    const {
+      hidden,
+      currencyHidden,
+      currencySymbol,
+      cartAttribute,
+      resetItemAttribute,
+    } = this.props;
     const currentID = window.location.pathname.split("/")[2];
     return (
       <div className={styles["description-page"]}>
@@ -56,9 +66,11 @@ class DescriptionPage extends PureComponent {
             if (error) return <div> Error Loading Product details. </div>;
             else {
               const productInfo = data.product;
+
               const productPrice = productInfo.prices.find(
                 (price) => price.currency.symbol === currencySymbol
               );
+
               const cartProduct = {
                 name: productInfo.name,
                 brand: productInfo.brand,
@@ -66,7 +78,7 @@ class DescriptionPage extends PureComponent {
                 id: productInfo.id,
                 amount: productPrice.amount,
                 symbol: productPrice.currency.symbol,
-                attributes: this.state.attributes,
+                attributes: cartAttribute,
               };
               return (
                 <div className={styles["description-container"]}>
@@ -96,73 +108,21 @@ class DescriptionPage extends PureComponent {
                     <div className={styles["attribute-section"]}>
                       {productInfo.attributes.map((attribute) => {
                         return (
-                          <span key={attribute.id}>
-                            <h4 className={styles["attribute-title"]}>
-                              {" "}
-                              {`${attribute.name.toUpperCase()} :`}{" "}
-                            </h4>
-                            <div className={styles.attributes}>
-                              {attribute.items.map((item) => {
-                                console.log(item.id);
-
-                                return (
-                                  <span key={item.id}>
-                                    <div
-                                      onClick={
-                                        (this.handleChoice = () => {
-                                          this.setState({
-                                            ...this.state,
-                                            attributes: {
-                                              ...this.state.attributes,
-                                              [attribute.name]: item.value,
-                                            },
-                                          });
-                                        })
-                                      }
-                                      className={styles["attribute-box"]}
-                                    >
-                                      {/* PLEASE READ!!!! */}
-
-                                      {/* FOR SOME ATTRIBUTE LIKE 'WITH USB 3 PORT' AND 'TOUCH ID IN KEYBOARD' ON THE IMAC PRODUCT THAT SHARE THE SAME ID, VALUE AND DISPLAY VALUE I.E: 'YES' AND 'NO' FROM THE GRAPHQL API, THERE IS NO WAY I CAN DISTINGUISH THEM SO ONCE A 'YES' OPTION IS CLICKED, IT GETS CLICKED ON BOTH OPTIONS. AND SAME GOES TO THE 'NO' OPTION, If the ID of these two options are changed to distinct ID's from the backend, it would work perfectly well. */}
-
-                                      <AttributeInput
-                                        key={item.id}
-                                        onSelect={this.changeHandler}
-                                        itemValue={item.value}
-                                        selectedId={this.state.selectedId}
-                                        itemId={item.id}
-                                        attributeType={attribute.type}
-                                      />
-                                      {/* BELOW IS A COMMENT OF AN ALTERNATIVE WAY I COULD HAVE RENDERED THE ATTRIBUTE OPTIONS, BUT SINCE I WORK WITH THE ID, IT STILL HAS THE SAME ERROR OF SELECTING ATTRIBUTE WITH THE SAME ATTRIBUTE FROM THE GRAPHQL API. */}
-                                      {/* <input
-                                        id={item.id}
-                                        type="checkbox"
-                                        name="attribute"
-                                        checked={isChecked}
-                                        onChange={(e) =>
-                                          this.changeHandler(
-                                            e.target.checked,
-                                            item.id
-                                          )
-                                        }
-                                      /> */}
-                                      {/* <label
-                                        style={{
-                                          backgroundColor: item.value,
-                                          minWidth: "30px",
-                                        }}
-                                        htmlFor={item.value}
-                                      >
-                                        {attribute.type === "swatch"
-                                          ? " "
-                                          : item.value}{" "}
-                                      </label> */}
-                                    </div>
-                                  </span>
-                                );
-                              })}
-                            </div>
-                          </span>
+                          <Attribute
+                            key={attribute.id}
+                            attribute={attribute}
+                            onClick={
+                              (this.handleChoice = () => {
+                                this.setState({
+                                  ...this.state,
+                                  attributes: {
+                                    ...this.state.attributes,
+                                    [attribute.name]: cartAttribute,
+                                  },
+                                });
+                              })
+                            }
+                          />
                         );
                       })}
                     </div>
@@ -179,9 +139,8 @@ class DescriptionPage extends PureComponent {
                         onClick={
                           (this.handleAddToCart = () => {
                             if (!(productInfo.attributes.length === 0)) {
-                              if (
-                                Object.keys(this.state.attributes).length === 0
-                              ) {
+                              resetItemAttribute();
+                              if (Object.keys(cartAttribute).length === 0) {
                                 return;
                               }
                             }
@@ -189,9 +148,8 @@ class DescriptionPage extends PureComponent {
                               return;
                             }
                             addItemToCart(cartProduct);
-                            this.setState({
-                              attributes: {},
-                            });
+                            console.log(this.state.attributes);
+                            resetItemAttribute();
                           })
                         }
                         className={`${styles["cta-button"]} ${
@@ -221,10 +179,13 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
   currencyHidden: selectCurrencyHidden,
   currencySymbol: selectCurrencySymbol,
+  cartAttribute: selectCartAttribute,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (item) => dispatch(addItem(item)),
+  addAttribute: (attribute) => dispatch(addAttribute(attribute)),
+  resetItemAttribute: () => dispatch(resetAttribute()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DescriptionPage);
