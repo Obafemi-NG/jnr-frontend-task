@@ -66,7 +66,6 @@ class DescriptionPage extends PureComponent {
             if (error) return <div> Error Loading Product details. </div>;
             else {
               const productInfo = data.product;
-
               const productPrice = productInfo.prices.find(
                 (price) => price.currency.symbol === currencySymbol
               );
@@ -108,21 +107,7 @@ class DescriptionPage extends PureComponent {
                     <div className={styles["attribute-section"]}>
                       {productInfo.attributes.map((attribute) => {
                         return (
-                          <Attribute
-                            key={attribute.id}
-                            attribute={attribute}
-                            onClick={
-                              (this.handleChoice = () => {
-                                this.setState({
-                                  ...this.state,
-                                  attributes: {
-                                    ...this.state.attributes,
-                                    [attribute.name]: cartAttribute,
-                                  },
-                                });
-                              })
-                            }
-                          />
+                          <Attribute key={attribute.id} attribute={attribute} />
                         );
                       })}
                     </div>
@@ -148,7 +133,6 @@ class DescriptionPage extends PureComponent {
                               return;
                             }
                             addItemToCart(cartProduct);
-                            console.log(this.state.attributes);
                             resetItemAttribute();
                           })
                         }

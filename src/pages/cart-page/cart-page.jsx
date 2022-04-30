@@ -20,8 +20,8 @@ class CartPage extends PureComponent {
         <div className={styles.title}>CART</div>
         {cartItems.length >= 1 ? (
           <div className={styles["cart-items"]}>
-            {cartItems.map((cartItem) => {
-              return <CartItem key={cartItem.id} cartItem={cartItem} />;
+            {cartItems.map((cartItem, i) => {
+              return <CartItem id={i} key={i} cartItem={cartItem} />;
             })}
           </div>
         ) : (

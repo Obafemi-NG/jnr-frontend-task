@@ -2,7 +2,11 @@ import React, { PureComponent } from "react";
 import Modal from "../cart-modal/cart-modal";
 import styles from "./cart-overlay.module.css";
 import { connect } from "react-redux";
-import { addItem, removeItem, toggleCart } from "../../redux/cart/cart.action";
+import {
+  increaseQuantity,
+  removeItem,
+  toggleCart,
+} from "../../redux/cart/cart.action";
 
 import { withRouter } from "../../withRouter";
 import { createStructuredSelector } from "reselect";
@@ -30,7 +34,7 @@ class CartOverlay extends PureComponent {
   render() {
     const {
       cartItems,
-      addItem,
+      increaseQuantity,
       removeItem,
       itemCount,
       totalPrice,
@@ -48,9 +52,9 @@ class CartOverlay extends PureComponent {
                 {itemCount} {itemCount > 1 ? "Items" : "Item"}{" "}
               </span>{" "}
             </div>
-            {cartItems.map((cartItem) => {
+            {cartItems.map((cartItem, i) => {
               return (
-                <div key={cartItem.id} className={styles["cart-item"]}>
+                <div key={i} className={styles["cart-item"]}>
                   <div className={styles["left-section"]}>
                     <p> {cartItem.name} </p>
                     <h4 className={styles.price}>
@@ -94,7 +98,7 @@ class CartOverlay extends PureComponent {
                   </div>
                   <div className={styles["middle-section"]}>
                     <div
-                      onClick={() => addItem(cartItem)}
+                      onClick={() => increaseQuantity(i)}
                       className={styles.increase}
                     >
                       +
@@ -163,7 +167,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCart: () => dispatch(toggleCart()),
-  addItem: (item) => dispatch(addItem(item)),
+  increaseQuantity: (item) => dispatch(increaseQuantity(item)),
   removeItem: (item) => dispatch(removeItem(item)),
 });
 export default withRouter(

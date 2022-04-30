@@ -13,7 +13,7 @@ import {
 
 import { ReactComponent as AngleRight } from "../../assets/angle-right.svg";
 import { ReactComponent as AngleLeft } from "../../assets/angle-left.svg";
-import { addItem, removeItem } from "../../redux/cart/cart.action";
+import { increaseQuantity, removeItem } from "../../redux/cart/cart.action";
 import styles from "./cart-item.module.css";
 
 class CartItem extends PureComponent {
@@ -41,10 +41,11 @@ class CartItem extends PureComponent {
     });
   };
   render() {
-    const { cartItem, currencySymbol, addItem, removeItem } = this.props;
+    const { cartItem, currencySymbol, increaseQuantity, removeItem, id } =
+      this.props;
     const galleryCount = cartItem.gallery.length - 1;
     return (
-      <div key={cartItem.id} className={styles["cart-item"]}>
+      <div key={id} className={styles["cart-item"]}>
         <div className={styles["left-section"]}>
           <h4 className={styles.brand}> {cartItem.brand} </h4>
           <p className={styles.name}> {cartItem.name} </p>
@@ -86,7 +87,7 @@ class CartItem extends PureComponent {
           </div>
         </div>
         <div className={styles["middle-section"]}>
-          <div onClick={() => addItem(cartItem)} className={styles.increase}>
+          <div onClick={() => increaseQuantity(id)} className={styles.increase}>
             {" "}
             +{" "}
           </div>
@@ -137,7 +138,7 @@ const mapStateToProps = createStructuredSelector({
   totalAmount: selectCartTotalPrice,
 });
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
+  increaseQuantity: (item) => dispatch(increaseQuantity(item)),
   removeItem: (item) => dispatch(removeItem(item)),
 });
 
