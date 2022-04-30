@@ -105,7 +105,7 @@ class CartOverlay extends PureComponent {
                     </div>
                     <div className={styles.quantity}>{cartItem.quantity}</div>
                     <div
-                      onClick={() => removeItem(cartItem)}
+                      onClick={() => removeItem(i)}
                       className={styles.decrease}
                     >
                       -

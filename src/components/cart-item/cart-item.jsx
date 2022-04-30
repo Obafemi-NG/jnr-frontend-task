@@ -92,7 +92,7 @@ class CartItem extends PureComponent {
             +{" "}
           </div>
           <div> {cartItem.quantity} </div>
-          <div onClick={() => removeItem(cartItem)} className={styles.decrease}>
+          <div onClick={() => removeItem(id)} className={styles.decrease}>
             {" "}
             -{" "}
           </div>
