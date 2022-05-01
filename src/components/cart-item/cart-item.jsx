@@ -13,7 +13,11 @@ import {
 
 import { ReactComponent as AngleRight } from "../../assets/angle-right.svg";
 import { ReactComponent as AngleLeft } from "../../assets/angle-left.svg";
-import { increaseQuantity, removeItem } from "../../redux/cart/cart.action";
+import {
+  increaseQuantity,
+  decreaseQuantity,
+  removeItemFromCart,
+} from "../../redux/cart/cart.action";
 import styles from "./cart-item.module.css";
 
 class CartItem extends PureComponent {
@@ -22,6 +26,7 @@ class CartItem extends PureComponent {
     this.state = {
       imageIndex: 0,
     };
+    this.decreaseCartItem = this.decreaseCartItem.bind(this);
   }
 
   handleNextImage = () => {
@@ -40,9 +45,27 @@ class CartItem extends PureComponent {
       };
     });
   };
+
+  decreaseCartItem = (i, quantity) => {
+    // if (quantity > 1) {
+    //   this.props.decreaseQuantity(i);
+    // } else this.props.removeItem(i);
+    if (quantity === 1) {
+      this.props.removeItem(i);
+    } else {
+      this.props.decreaseQuantity(i);
+    }
+  };
+
   render() {
-    const { cartItem, currencySymbol, increaseQuantity, removeItem, id } =
-      this.props;
+    const {
+      cartItem,
+      currencySymbol,
+      increaseQuantity,
+      removeItem,
+      decreaseQuantity,
+      id,
+    } = this.props;
     const galleryCount = cartItem.gallery.length - 1;
     return (
       <div key={id} className={styles["cart-item"]}>
@@ -92,7 +115,10 @@ class CartItem extends PureComponent {
             +{" "}
           </div>
           <div> {cartItem.quantity} </div>
-          <div onClick={() => removeItem(id)} className={styles.decrease}>
+          <div
+            onClick={() => this.decreaseCartItem(id, cartItem.quantity)}
+            className={styles.decrease}
+          >
             {" "}
             -{" "}
           </div>
@@ -139,7 +165,8 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = (dispatch) => ({
   increaseQuantity: (item) => dispatch(increaseQuantity(item)),
-  removeItem: (item) => dispatch(removeItem(item)),
+  removeItem: (item) => dispatch(removeItemFromCart(item)),
+  decreaseQuantity: (item) => dispatch(decreaseQuantity(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);

@@ -4,8 +4,9 @@ import styles from "./cart-overlay.module.css";
 import { connect } from "react-redux";
 import {
   increaseQuantity,
-  removeItem,
+  decreaseQuantity,
   toggleCart,
+  removeItemFromCart,
 } from "../../redux/cart/cart.action";
 
 import { withRouter } from "../../withRouter";
@@ -35,7 +36,7 @@ class CartOverlay extends PureComponent {
     const {
       cartItems,
       increaseQuantity,
-      removeItem,
+      decreaseQuantity,
       itemCount,
       totalPrice,
       currencySymbol,
@@ -105,7 +106,7 @@ class CartOverlay extends PureComponent {
                     </div>
                     <div className={styles.quantity}>{cartItem.quantity}</div>
                     <div
-                      onClick={() => removeItem(i)}
+                      onClick={() => decreaseQuantity(i)}
                       className={styles.decrease}
                     >
                       -
@@ -168,7 +169,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   toggleCart: () => dispatch(toggleCart()),
   increaseQuantity: (item) => dispatch(increaseQuantity(item)),
-  removeItem: (item) => dispatch(removeItem(item)),
+  decreaseQuantity: (item) => dispatch(decreaseQuantity(item)),
+  removeItem: (item) => dispatch(removeItemFromCart(item)),
 });
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(CartOverlay)
