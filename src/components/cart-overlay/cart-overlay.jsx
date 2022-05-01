@@ -32,6 +32,14 @@ class CartOverlay extends PureComponent {
     this.props.toggleCart();
   };
 
+  decreaseCart = (i, quantity) => {
+    if (quantity === 1) {
+      this.props.removeItem(i);
+    } else {
+      this.props.decreaseQuantity(i);
+    }
+  };
+
   render() {
     const {
       cartItems,
@@ -106,7 +114,7 @@ class CartOverlay extends PureComponent {
                     </div>
                     <div className={styles.quantity}>{cartItem.quantity}</div>
                     <div
-                      onClick={() => decreaseQuantity(i)}
+                      onClick={() => this.decreaseCart(i, cartItem.quantity)}
                       className={styles.decrease}
                     >
                       -
