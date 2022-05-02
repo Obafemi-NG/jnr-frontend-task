@@ -28,12 +28,9 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
         cartItems: increaseCartItem(state.cartItems, action.payload),
       };
     case cartActionTypes.REMOVE_CART_ITEM:
-      // state.cartItems.splice(action.payload, 1);
-      const newCart = state.cartItems.filter((cartItem) => {
-        console.log(cartItem.id);
-        return cartItem.id !== action.payload;
-      });
-      return { ...state, cartItems: newCart };
+      state.cartItems.splice(action.payload, 1);
+
+      return { ...state };
     default:
       return state;
   }
