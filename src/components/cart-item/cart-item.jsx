@@ -47,9 +47,6 @@ class CartItem extends PureComponent {
   };
 
   decreaseCartItem = (i, quantity) => {
-    // if (quantity > 1) {
-    //   this.props.decreaseQuantity(i);
-    // } else this.props.removeItem(i);
     if (quantity === 1) {
       this.props.removeItem(i);
     } else {
@@ -58,14 +55,7 @@ class CartItem extends PureComponent {
   };
 
   render() {
-    const {
-      cartItem,
-      currencySymbol,
-      increaseQuantity,
-      removeItem,
-      decreaseQuantity,
-      id,
-    } = this.props;
+    const { cartItem, currencySymbol, increaseQuantity, id } = this.props;
     const galleryCount = cartItem.gallery.length - 1;
     return (
       <div key={id} className={styles["cart-item"]}>

@@ -44,7 +44,6 @@ class CartOverlay extends PureComponent {
     const {
       cartItems,
       increaseQuantity,
-      decreaseQuantity,
       itemCount,
       totalPrice,
       currencySymbol,
