@@ -1,5 +1,5 @@
-# Entry Level for React Developer role at Scandiweb.
-This is a Front-end project that was made with React from Beginning to the end. It was made to consume a graphql API which can be started locally. If you wish to start up the server and test run this project, a link to the github Grapql code which contains the end point is [here](https://github.com/scandiweb/junior-react-endpoint) .
+# E-commerce WebAPP.
+This is a Front-end project that was made with ReactJS from Beginning to the end. It was made to consume a graphql API which can be started locally. If you wish to start up the server and test run this project, a link to the github Grapql code which contains the end point is [here](https://github.com/scandiweb/junior-react-endpoint) .
 
 # Made with: 
   1. Class based React Components.
